@@ -4,6 +4,7 @@ public class Demo {
     
     public boolean getBool(){
         return true;
+        
     } 
 
     public static void main(String[] args) {
