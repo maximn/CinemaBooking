@@ -1,7 +1,11 @@
 package connection;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.Properties;
+
+//import com.mysql.cj.api.*;
 
 public class DBConnection {
     private String host;
@@ -24,9 +28,9 @@ public class DBConnection {
         
         url = "jdbc:mysql://"+ host +"/"+ nameDB;
         
-        properties.setProperty("user", root);
-        properties.setProperty("password", password);
-        properties.setProperty("characterEncoding", "UTF-8");
+        properties.setProperty("user", this.root);
+        properties.setProperty("password", this.password);
+        properties.setProperty("characterEncoding", "ASC");
         properties.setProperty("useUnocode", "true");
         
         System.out.println("URL:" + url);
@@ -34,9 +38,13 @@ public class DBConnection {
     
     public void init(){
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            mysqlConnect = DriverManager.getConnection(url);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
+        } 
+        catch (SQLException e) {
+             e.printStackTrace();
         }
     }
 
