@@ -39,7 +39,7 @@ public class DBConnection {
     public void init(){
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            mysqlConnect = DriverManager.getConnection(url);
+            mysqlConnect = DriverManager.getConnection(url, root, password);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } 
