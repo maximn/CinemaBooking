@@ -19,6 +19,11 @@
         </plugins>
     </build>
   <dependencies>
+  <dependency>
+    	<groupId>joda-time</groupId>
+    	<artifactId>joda-time</artifactId>
+    	<version>LATEST</version>
+    </dependency>
   	<dependency>
   		<groupId>junit</groupId>
   		<artifactId>junit</artifactId>
