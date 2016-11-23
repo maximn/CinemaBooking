@@ -1,26 +1,27 @@
 package domain;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 
 /**
- * represents notation with the information about the seats in the cinema booking system.
+ * represents notation with the information about the seats in the cinema's booking system.
  * @author Artem Meleshko
  * @version 1.0 2016
  */
 
 public class Seat {
-    Integer seatNumber;
-    String seatStatus;
-    
+    private Integer sessionId;
+    private Map<Integer, String> seatsNumStat = new LinkedHashMap<Integer, String>();
     /**
      * Constructs and initialized Seat.
      * @param seatNumber is a seat's number.
      * @param seatStatus is a seat's status (reserved, booked, free);
      */
     
-    Seat(Integer seatNumber, String seatStatus){
-        this.seatNumber=seatNumber;
-        this.seatStatus=seatStatus;
+    private Seat(Integer sessionId, Map seatsNumStat){
+        this.sessionId=sessionId;
+        this.seatsNumStat=seatsNumStat;
     }
     
     /**
@@ -30,41 +31,41 @@ public class Seat {
     public Seat(){
         this(null, null);
     }
-
+   
     /**
-     * @return the seatNumber
+     * @return the sessionId
      */
-    public Integer getSeatNumber() {
-        return seatNumber;
+    public Integer getSessionId() {
+        return sessionId;
     }
 
     /**
-     * @param seatNumber the seatNumber to set
+     * @param sessionId the sessionId to set
      */
-    public void setSeatNumber(Integer seatNumber) {
-        this.seatNumber = seatNumber;
+    public void setSessionId(Integer sessionId) {
+        this.sessionId = sessionId;
     }
 
     /**
-     * @return the seatStatus
+     * @return the seatsNumStat
      */
-    public String getSeatStatus() {
-        return seatStatus;
+    public Map<Integer, String> getSeatsNumStat() {
+        return seatsNumStat;
     }
 
     /**
-     * @param seatStatus the seatStatus to set
+     * @param seatsNumStat the seatsNumStat to set
      */
-    public void setSeatStatus(String seatStatus) {
-        this.seatStatus = seatStatus;
+    public void setSeatsNumStat(Map<Integer, String> seatsNumStat) {
+        this.seatsNumStat = seatsNumStat;
     }
-
+        
     /* (non-Javadoc)
      * @see java.lang.Object#toString()
      */
     @Override
     public String toString() {
-        return "Seat [seatNumber=" + seatNumber + ", seatStatus=" + seatStatus + "]";
+        return "Seat [sessionId=" + sessionId + ", seatsNumStat=" + seatsNumStat.toString() + "]";
     }
 
     /* (non-Javadoc)
@@ -74,8 +75,8 @@ public class Seat {
     public int hashCode() {
         final int prime = 37;
         int result = 17;
-        result = prime * result + ((seatNumber == null) ? 0 : seatNumber.hashCode());
-        result = prime * result + ((seatStatus == null) ? 0 : seatStatus.hashCode());
+        result = prime * result + ((sessionId == null) ? 0 : sessionId.hashCode());
+        result = prime * result + ((seatsNumStat == null) ? 0 : seatsNumStat.hashCode());
         return result;
     }
 
@@ -89,9 +90,19 @@ public class Seat {
         if (!(obj instanceof Seat))
             return false;
         Seat other = (Seat) obj;
-        return (Objects.equals(seatNumber, other.seatNumber)) && (Objects.equals(seatStatus, other.seatStatus));
+        return (Objects.equals(sessionId, other.sessionId)) && (Objects.equals(seatsNumStat, other.seatsNumStat));
     }
     
+    
+    public static void main(String[] args){
+       
+        Seat seat = new Seat();
+        Map<Integer, String> seatsNumStat = new LinkedHashMap<Integer, String>();
+        seatsNumStat.put(1, "free");
+        seat.setSessionId(332);
+        seat.setSeatsNumStat(seatsNumStat);
+        System.out.println(seat);
+    }
     
 
 }

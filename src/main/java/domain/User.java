@@ -9,18 +9,21 @@ import java.util.Objects;
  */
 
 public class User {
-    String userName;
-    String userEmail;
-    String userRole;
+    private Integer id;
+    private String userName;
+    private String userEmail;
+    private String userRole;
     
     /**
      * Constructs and Initializes User.
+     * @param id is an Integer User's id.
      * @param userName is a String notation with the User's name.
      * @param userEmail is a String notation with the User's email.
      * @param userRole is a String notation with the User's role.
      */
     
-    public User(String userName, String userEmail, String userRole){
+    public User(Integer id, String userName, String userEmail, String userRole){
+        this.id=id;
         this.userName=userName;
         this.userEmail=userEmail;
         this.userRole=userRole;
@@ -31,7 +34,21 @@ public class User {
      */
     
     public User(){
-        this(null, null, null);
+        this(null, null, null, null);
+    }
+    
+    /**
+     * @return the id
+     */
+    public Integer getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     /**
@@ -81,7 +98,7 @@ public class User {
      */
     @Override
     public String toString() {
-        return "User [userName=" + userName + ", userEmail=" + userEmail + ", userRole=" + userRole + "]";
+        return "User [id=" + id + ",userName=" + userName + ", userEmail=" + userEmail + ", userRole=" + userRole + "]";
     }
 
     /* (non-Javadoc)
@@ -91,6 +108,7 @@ public class User {
     public int hashCode() {
         final int prime = 37;
         int result = 17;
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
         result = prime * result + ((userEmail == null) ? 0 : userEmail.hashCode());
         result = prime * result + ((userName == null) ? 0 : userName.hashCode());
         result = prime * result + ((userRole == null) ? 0 : userRole.hashCode());
@@ -107,7 +125,7 @@ public class User {
         if (!(obj instanceof User))
             return false;
         User other = (User) obj;
-        return (Objects.equals(userName, other.userName)) && (Objects.equals(userEmail, other.userEmail)) 
+        return (Objects.equals(id, other.id)) && (Objects.equals(userName, other.userName)) && (Objects.equals(userEmail, other.userEmail)) 
                 && (Objects.equals(userRole, other.userRole));
     }
     

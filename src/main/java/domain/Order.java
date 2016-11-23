@@ -9,10 +9,11 @@ import java.util.Objects;
  */
 
 public class Order {
-    Integer orderNumber;
-    String userId;
-    Integer seatNumber;
-    Integer filmId;
+    private Integer orderNumber;
+    private String userId;
+    private Integer seatNumber;
+    private Integer filmId;
+    private Integer sessionId;
    
     /**
      * Constructs and initializes Order. 
@@ -20,20 +21,22 @@ public class Order {
      * @param userId is a unique user's Id in the database.
      * @param seatNumber is a number of the seat which is reserved.
      * @param filmId is a unique Id of the film.
+     * @param sessionId is a unique session's id.
      */
     
-    public Order(Integer orderNumber, String userId, Integer seatNumber, Integer filmId) {
+    public Order(Integer orderNumber, String userId, Integer seatNumber, Integer filmId, Integer sessionId) {
         this.orderNumber = orderNumber;
         this.userId = userId;
         this.seatNumber = seatNumber;
         this.filmId = filmId;
+        this.sessionId=sessionId;
     }
     
     /**
      * Constructs and initializes Order with the empty fields.
      */
     public Order(){
-        this(null, null, null, null);
+        this(null, null, null, null, null);
     }
 
     /**
@@ -92,13 +95,27 @@ public class Order {
         this.filmId = filmId;
     }
 
+    /**
+     * @return the sessionId
+     */
+    public Integer getSessionId() {
+        return sessionId;
+    }
+
+    /**
+     * @param sessionId the sessionId to set
+     */
+    public void setSessionId(Integer sessionId) {
+        this.sessionId = sessionId;
+    }
+
     /* (non-Javadoc)
      * @see java.lang.Object#toString()
      */
     @Override
     public String toString() {
         return "Order [orderNumber=" + orderNumber + ", userId=" + userId + ", seatNumber=" + seatNumber + ", filmId="
-                + filmId + "]";
+                + filmId + ", sessionId=" + sessionId + "]";
     }
 
     /* (non-Javadoc)
@@ -112,6 +129,7 @@ public class Order {
         result = prime * result + ((orderNumber == null) ? 0 : orderNumber.hashCode());
         result = prime * result + ((seatNumber == null) ? 0 : seatNumber.hashCode());
         result = prime * result + ((userId == null) ? 0 : userId.hashCode());
+        result = prime * result + ((sessionId == null) ? 0 : sessionId.hashCode());
         return result;
     }
 
@@ -126,7 +144,8 @@ public class Order {
             return false;
         Order other = (Order) obj;
         return (Objects.equals(orderNumber, other.orderNumber)) && (Objects.equals(filmId, other.filmId)) 
-                && (Objects.equals(seatNumber, other.seatNumber)) && (Objects.equals(userId, other.userId));
+                && (Objects.equals(seatNumber, other.seatNumber)) && (Objects.equals(userId, other.userId)) 
+                && (Objects.equals(sessionId, other.sessionId));
     }
     
     
