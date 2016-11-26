@@ -2,8 +2,14 @@ package connection;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Properties;
+
+
+
+
 
 //import com.mysql.cj.api.*;
 
@@ -37,6 +43,7 @@ public class DBConnection {
     }
     
     public void init(){
+        if (mysqlConnect == null)
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             mysqlConnect = DriverManager.getConnection(url, root, password);
@@ -45,6 +52,34 @@ public class DBConnection {
         } 
         catch (SQLException e) {
              e.printStackTrace();
+        }
+    }
+    
+    public void finalize(){
+        try {
+            mysqlConnect.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public ResultSet query(String query){
+        ResultSet result = null;
+        try {
+            Statement stmt = mysqlConnect.createStatement();
+            result = stmt.executeQuery(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+    
+    public void updateQuery(String query){
+        try {
+            Statement stmt = mysqlConnect.createStatement();
+            stmt.executeUpdate(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
