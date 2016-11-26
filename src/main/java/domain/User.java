@@ -1,5 +1,6 @@
 package domain;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
@@ -8,9 +9,10 @@ import java.util.Objects;
  * @version 1.0 2016
  */
 
-public class User {
-    private Integer userId;
+public class User implements Serializable{
+    private Long userId;
     private String userName;
+    private String userPassword;
     private String userEmail;
     private String userRole;
     
@@ -22,9 +24,10 @@ public class User {
      * @param userRole is a String notation with the User's role.
      */
     
-    public User(Integer userId, String userName, String userEmail, String userRole){
+    public User(Long userId, String userName, String userPassword, String userEmail, String userRole){
         this.userId=userId;
         this.userName=userName;
+        this.userPassword=userPassword;
         this.userEmail=userEmail;
         this.userRole=userRole;
     }
@@ -34,20 +37,20 @@ public class User {
      */
     
     public User(){
-        this(null, null, null, null);
+        this(null, null, null, null, null);
     }
     
     /**
      * @return the id
      */
-    public Integer getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
     /**
      * @param id the id to set
      */
-    public void setId(Integer userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
@@ -63,6 +66,20 @@ public class User {
      */
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    /**
+     * @return the userPassword
+     */
+    public String getUserPassword() {
+        return userPassword;
+    }
+
+    /**
+     * @param userPassword the userPassword to set
+     */
+    public void setUserPassword(String userPassword) {
+        this.userPassword = userPassword;
     }
 
     /**
@@ -98,7 +115,7 @@ public class User {
      */
     @Override
     public String toString() {
-        return "User [userId=" + userId + ",userName=" + userName + ", userEmail=" + userEmail + ", userRole=" + userRole + "]";
+        return "User [userId=" + userId + ",userName=" + userName + ",userPassword=" + userPassword + ", userEmail=" + userEmail + ", userRole=" + userRole + "]";
     }
 
     /* (non-Javadoc)
@@ -111,6 +128,7 @@ public class User {
         result = prime * result + ((userId == null) ? 0 : userId.hashCode());
         result = prime * result + ((userEmail == null) ? 0 : userEmail.hashCode());
         result = prime * result + ((userName == null) ? 0 : userName.hashCode());
+        result = prime * result + ((userPassword == null) ? 0 : userPassword.hashCode());
         result = prime * result + ((userRole == null) ? 0 : userRole.hashCode());
         return result;
     }
@@ -125,7 +143,8 @@ public class User {
         if (!(obj instanceof User))
             return false;
         User other = (User) obj;
-        return (Objects.equals(userId, other.userId)) && (Objects.equals(userName, other.userName)) && (Objects.equals(userEmail, other.userEmail)) 
+        return (Objects.equals(userId, other.userId)) && (Objects.equals(userName, other.userName)) && (Objects.equals(userPassword, other.userPassword))
+                && (Objects.equals(userEmail, other.userEmail)) 
                 && (Objects.equals(userRole, other.userRole));
     }
     
