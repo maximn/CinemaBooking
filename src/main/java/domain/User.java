@@ -9,7 +9,7 @@ import java.util.Objects;
  */
 
 public class User {
-    private Integer id;
+    private Integer userId;
     private String userName;
     private String userEmail;
     private String userRole;
@@ -22,8 +22,8 @@ public class User {
      * @param userRole is a String notation with the User's role.
      */
     
-    public User(Integer id, String userName, String userEmail, String userRole){
-        this.id=id;
+    public User(Integer userId, String userName, String userEmail, String userRole){
+        this.userId=userId;
         this.userName=userName;
         this.userEmail=userEmail;
         this.userRole=userRole;
@@ -40,15 +40,15 @@ public class User {
     /**
      * @return the id
      */
-    public Integer getId() {
-        return id;
+    public Integer getUserId() {
+        return userId;
     }
 
     /**
      * @param id the id to set
      */
-    public void setId(Integer id) {
-        this.id = id;
+    public void setId(Integer userId) {
+        this.userId = userId;
     }
 
     /**
@@ -98,7 +98,7 @@ public class User {
      */
     @Override
     public String toString() {
-        return "User [id=" + id + ",userName=" + userName + ", userEmail=" + userEmail + ", userRole=" + userRole + "]";
+        return "User [userId=" + userId + ",userName=" + userName + ", userEmail=" + userEmail + ", userRole=" + userRole + "]";
     }
 
     /* (non-Javadoc)
@@ -108,7 +108,7 @@ public class User {
     public int hashCode() {
         final int prime = 37;
         int result = 17;
-        result = prime * result + ((id == null) ? 0 : id.hashCode());
+        result = prime * result + ((userId == null) ? 0 : userId.hashCode());
         result = prime * result + ((userEmail == null) ? 0 : userEmail.hashCode());
         result = prime * result + ((userName == null) ? 0 : userName.hashCode());
         result = prime * result + ((userRole == null) ? 0 : userRole.hashCode());
@@ -125,7 +125,7 @@ public class User {
         if (!(obj instanceof User))
             return false;
         User other = (User) obj;
-        return (Objects.equals(id, other.id)) && (Objects.equals(userName, other.userName)) && (Objects.equals(userEmail, other.userEmail)) 
+        return (Objects.equals(userId, other.userId)) && (Objects.equals(userName, other.userName)) && (Objects.equals(userEmail, other.userEmail)) 
                 && (Objects.equals(userRole, other.userRole));
     }
     

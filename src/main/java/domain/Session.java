@@ -13,8 +13,9 @@ import org.joda.time.format.DateTimeFormatter;
  */
 
 public class Session {
+    private Integer sessionId;
     private DateTime sessionTime;
-    private Integer sessionFilmId;
+    private Film sessionFilm;
     
     /**
      * Constructs and initialized Session.
@@ -22,9 +23,10 @@ public class Session {
      * @param sessionFilmId is a film's id. 
      */
     
-    Session(DateTime sessionTime, Integer sessionFilmId){
+    public Session(Integer sessionId, DateTime sessionTime, Film sessionFilm){
+        this.sessionId=sessionId;
         this.sessionTime=sessionTime;
-        this.sessionFilmId=sessionFilmId;
+        this.sessionFilm=sessionFilm;
     }
     
     /**
@@ -32,7 +34,21 @@ public class Session {
      */
     
     public Session(){
-        this(null, null);
+        this(null, null, null);
+    }
+
+    /**
+     * @return the sessionId
+     */
+    public Integer getSessionId() {
+        return sessionId;
+    }
+
+    /**
+     * @param sessionId the sessionId to set
+     */
+    public void setSessionId(Integer sessionId) {
+        this.sessionId = sessionId;
     }
 
     /**
@@ -43,24 +59,24 @@ public class Session {
     }
 
     /**
-     * @param sessionTime is a date and time of the film's session to set.
+     * @param sessionTime the sessionTime to set
      */
     public void setSessionTime(DateTime sessionTime) {
         this.sessionTime = sessionTime;
     }
-    
+
     /**
-     * @return the sessionFilmId
+     * @return the sessionFilm
      */
-    public Integer getSessionFilmId() {
-        return sessionFilmId;
+    public Film getSessionFilm() {
+        return sessionFilm;
     }
 
     /**
-     * @param sessionFilmId the sessionFilmId to set
+     * @param sessionFilm the sessionFilm to set
      */
-    public void setSessionFilmId(Integer sessionFilmId) {
-        this.sessionFilmId = sessionFilmId;
+    public void setSessionFilm(Film sessionFilm) {
+        this.sessionFilm = sessionFilm;
     }
 
     /* (non-Javadoc)
@@ -69,7 +85,7 @@ public class Session {
     @Override
     public String toString() {
         DateTimeFormatter fmt = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss");
-        return "Session [sessionTime=" + fmt.print(sessionTime) + ", sessionFilmId=" + sessionFilmId + "]";
+        return "Session [sessionId=" + sessionId + "sessionTime=" + fmt.print(sessionTime) + ", sessionFilm=" + sessionFilm + "]";
     }
 
     /* (non-Javadoc)
@@ -79,8 +95,9 @@ public class Session {
     public int hashCode() {
         final int prime = 37;
         int result = 17;
+        result = prime * result + ((sessionId == null) ? 0 : sessionId.hashCode());
         result = prime * result + ((sessionTime == null) ? 0 : sessionTime.hashCode());
-        result = prime * result + ((sessionFilmId == null) ? 0 : sessionFilmId.hashCode());
+        result = prime * result + ((sessionFilm == null) ? 0 : sessionFilm.hashCode());
         return result;
     }
 
@@ -94,10 +111,7 @@ public class Session {
         if (!(obj instanceof Session))
             return false;
         Session other = (Session) obj;
-        return (Objects.equals(sessionTime, other.sessionTime)) && (Objects.equals(sessionFilmId, other.sessionFilmId));
+        return (Objects.equals(sessionId, other.sessionId)) && (Objects.equals(sessionTime, other.sessionTime)) 
+                && (Objects.equals(sessionFilm, other.sessionFilm));
     }
-    
-    
-    
-
 }

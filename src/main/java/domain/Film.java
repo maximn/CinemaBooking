@@ -16,7 +16,7 @@ public class Film {
     private Integer filmYear;
     private String filmLength;
     private String filmDescription;
-    private Set<Integer> sessionIdSet = new LinkedHashSet<Integer>();
+    private Set<Session> sessionsSet = new LinkedHashSet<Session>();
     
     /**
      * Constructs and initializes Film.
@@ -27,12 +27,13 @@ public class Film {
      * @param filmDescription is a String notation with the film's description.
      */
     
-    Film(Integer filmId, String filmName, Integer filmYear, String filmLength, String filmDescription){
+    Film(Integer filmId, String filmName, Integer filmYear, String filmLength, String filmDescription, Set sessionsSet){
         this.filmId=filmId;
         this.filmName=filmName;
         this.filmYear=filmYear;
         this.filmLength=filmLength;
-        this.filmDescription=filmDescription;        
+        this.filmDescription=filmDescription;
+        this.sessionsSet=sessionsSet;
     }
     
     /**
@@ -40,7 +41,7 @@ public class Film {
      */
     
     public Film(){
-        this(null, null, null, null, null);
+        this(null, null, null, null, null, null);
     }
         
     /* (non-Javadoc)
@@ -55,6 +56,7 @@ public class Film {
         result = prime * result + ((filmLength == null) ? 0 : filmLength.hashCode());
         result = prime * result + ((filmName == null) ? 0 : filmName.hashCode());
         result = prime * result + ((filmYear == null) ? 0 : filmYear.hashCode());
+        result = prime * result + ((sessionsSet == null) ? 0 : sessionsSet.hashCode());
         return result;
     }
 
@@ -70,7 +72,8 @@ public class Film {
             return false;
         Film other = (Film) s;
         return (Objects.equals(filmId, other.filmId)) && (Objects.equals(filmName, other.filmName)) && (Objects.equals(filmYear, other.filmYear)) 
-                && (Objects.equals(filmLength, other.filmLength)) && (Objects.equals(filmDescription, other.filmDescription));
+                && (Objects.equals(filmLength, other.filmLength)) && (Objects.equals(filmDescription, other.filmDescription))
+                && (Objects.equals(sessionsSet, other.sessionsSet));
         
     }
 
@@ -81,31 +84,23 @@ public class Film {
     @Override
     public String toString() {
         return "Film [filmId="+ filmId +", filmName=" + filmName + ", filmYear=" + filmYear + ", filmLength=" + filmLength
-                + ", filmDescription=" + filmDescription + "]";
+                + ", filmDescription=" + filmDescription + ", sessionsSet" + sessionsSet + "]";
     }
 
     /**
      * @return the sessionIdSet
      */
-    public Set<Integer> getSessionIdSet() {
-        return sessionIdSet;
+    public Set<Session> getSessionsSet() {
+        return sessionsSet;
     }
 
     /**
      * @param sessionIdSet is the Set(Integer) Collection to set
      */
-    public void setSessionIdSet(Set<Integer> sessionIdSet) {
-        this.sessionIdSet = sessionIdSet;
+    public void setSessionsSet(Set<Session> sessionsSet) {
+        this.sessionsSet = sessionsSet;
     }
     
-    /**
-     * @param sessionIdSet is the Set(Integer) Collection to set
-     * @param itemSessionIdSet is the Integer session's id.
-     */
-    public void setItemSessionIdSet(Integer itemSessionIdSet) {
-        this.sessionIdSet.add(itemSessionIdSet);
-    }
-
     /**
      * @return the filmId
      */
