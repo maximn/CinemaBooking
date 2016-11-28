@@ -10,10 +10,10 @@ import java.util.Objects;
 
 public class Order {
     private Integer orderId;
-    private User userId;
+    private User user;
     private Seat seatNumber;
-    private Film filmId;
-    private Session sessionId;
+    private Film film;
+    private Session session;
    
     /**
      * Constructs and initializes Order. 
@@ -24,12 +24,12 @@ public class Order {
      * @param sessionId is a unique session's id.
      */
     
-    public Order(Integer orderNumber, User userId, Seat seatNumber, Film filmId, Session sessionId) {
+    public Order(Integer orderNumber, User user, Seat seatNumber, Film film, Session session) {
         this.orderId = orderNumber;
-        this.userId = userId;
+        this.user = user;
         this.seatNumber = seatNumber;
-        this.filmId = filmId;
-        this.sessionId=sessionId;
+        this.film = film;
+        this.session=session;
     }
     
     /**
@@ -57,14 +57,14 @@ public class Order {
      * @return the userId
      */
     public User getUserId() {
-        return userId;
+        return user;
     }
 
     /**
      * @param userId is a unique user's Id in the database to set.
      */
-    public void setUserId(User userId) {
-        this.userId = userId;
+    public void setUserId(User user) {
+        this.user = user;
     }
 
     /**
@@ -85,28 +85,28 @@ public class Order {
      * @return the filmId
      */
     public Film getFilmId() {
-        return filmId;
+        return film;
     }
 
     /**
      * @param filmId is a unique Id of the film to set.
      */
-    public void setFilmId(Film filmId) {
-        this.filmId = filmId;
+    public void setFilmId(Film film) {
+        this.film = film;
     }
 
     /**
      * @return the sessionId
      */
     public Session getSessionId() {
-        return sessionId;
+        return session;
     }
 
     /**
      * @param sessionId the sessionId to set
      */
-    public void setSessionId(Session sessionId) {
-        this.sessionId = sessionId;
+    public void setSessionId(Session session) {
+        this.session = session;
     }
 
     /* (non-Javadoc)
@@ -114,8 +114,8 @@ public class Order {
      */
     @Override
     public String toString() {
-        return "Order [orderNumber=" + orderId + ", userId=" + userId + ", seatNumber=" + seatNumber + ", filmId="
-                + filmId + ", sessionId=" + sessionId + "]";
+        return "Order [orderNumber=" + orderId + ", user=" + user + ", seatNumber=" + seatNumber + ", film="
+                + film + ", session=" + session + "]";
     }
 
     /* (non-Javadoc)
@@ -125,11 +125,11 @@ public class Order {
     public int hashCode() {
         final int prime = 37;
         int result = 17;
-        result = prime * result + ((filmId == null) ? 0 : filmId.hashCode());
+        result = prime * result + ((film == null) ? 0 : film.hashCode());
         result = prime * result + ((orderId == null) ? 0 : orderId.hashCode());
         result = prime * result + ((seatNumber == null) ? 0 : seatNumber.hashCode());
-        result = prime * result + ((userId == null) ? 0 : userId.hashCode());
-        result = prime * result + ((sessionId == null) ? 0 : sessionId.hashCode());
+        result = prime * result + ((user == null) ? 0 : user.hashCode());
+        result = prime * result + ((session == null) ? 0 : session.hashCode());
         return result;
     }
 
@@ -143,9 +143,9 @@ public class Order {
         if (!(obj instanceof Order))
             return false;
         Order other = (Order) obj;
-        return (Objects.equals(orderId, other.orderId)) && (Objects.equals(filmId, other.filmId)) 
-                && (Objects.equals(seatNumber, other.seatNumber)) && (Objects.equals(userId, other.userId)) 
-                && (Objects.equals(sessionId, other.sessionId));
+        return (Objects.equals(orderId, other.orderId)) && (Objects.equals(film, other.film)) 
+                && (Objects.equals(seatNumber, other.seatNumber)) && (Objects.equals(user, other.user)) 
+                && (Objects.equals(session, other.session));
     }
     
     

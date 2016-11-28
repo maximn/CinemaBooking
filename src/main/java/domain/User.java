@@ -37,7 +37,6 @@ public class User implements Serializable{
      */
     
     public User(){
-        this(null, null, null, null, null);
     }
     
     /**
@@ -115,7 +114,7 @@ public class User implements Serializable{
      */
     @Override
     public String toString() {
-        return "User [userId=" + userId + ",userName=" + userName + ",userPassword=" + userPassword + ", userEmail=" + userEmail + ", userRole=" + userRole + "]";
+        return "User [userId=" + userId + ",userName=" + userName  + ", userEmail=" + userEmail + ", userRole=" + userRole + "]";
     }
 
     /* (non-Javadoc)
@@ -125,11 +124,7 @@ public class User implements Serializable{
     public int hashCode() {
         final int prime = 37;
         int result = 17;
-        result = prime * result + ((userId == null) ? 0 : userId.hashCode());
         result = prime * result + ((userEmail == null) ? 0 : userEmail.hashCode());
-        result = prime * result + ((userName == null) ? 0 : userName.hashCode());
-        result = prime * result + ((userPassword == null) ? 0 : userPassword.hashCode());
-        result = prime * result + ((userRole == null) ? 0 : userRole.hashCode());
         return result;
     }
 
@@ -143,9 +138,7 @@ public class User implements Serializable{
         if (!(obj instanceof User))
             return false;
         User other = (User) obj;
-        return (Objects.equals(userId, other.userId)) && (Objects.equals(userName, other.userName)) && (Objects.equals(userPassword, other.userPassword))
-                && (Objects.equals(userEmail, other.userEmail)) 
-                && (Objects.equals(userRole, other.userRole));
+        return (Objects.equals(userEmail, other.userEmail));
     }
     
     
