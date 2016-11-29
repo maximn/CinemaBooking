@@ -9,7 +9,7 @@ import java.util.Properties;
 
 public class MysqlDAOFactory extends DAOFactory {
     public static final String DRIVER="com.mysql.cj.jdbc.Driver";
-    public static final String DBURL="jdbc:mysql://localhost/userTest";
+    public static final String DBURL="jdbc:mysql://localhost/test";
     
     private String root = "root";
     private String password = "bonjorno";
@@ -25,7 +25,7 @@ public class MysqlDAOFactory extends DAOFactory {
     }
     
     @Override
-    public void getConnection() throws SQLException {
+    public Connection getConnection() throws SQLException {
         if (mysqlConnect == null)
             try {
                 Class.forName("com.mysql.cj.jdbc.Driver");
@@ -36,6 +36,7 @@ public class MysqlDAOFactory extends DAOFactory {
             catch (SQLException e) {
                  e.printStackTrace();
             }
+        return mysqlConnect;
     }
     
     public void closeConnection(){

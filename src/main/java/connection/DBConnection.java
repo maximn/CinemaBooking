@@ -42,7 +42,7 @@ public class DBConnection {
         System.out.println("URL:" + url);
     }
     
-    public void init(){
+    public Connection init(){
         if (mysqlConnect == null)
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -53,6 +53,7 @@ public class DBConnection {
         catch (SQLException e) {
              e.printStackTrace();
         }
+        return mysqlConnect;
     }
     
     public void finalize(){

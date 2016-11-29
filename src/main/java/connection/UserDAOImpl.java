@@ -1,18 +1,21 @@
 package connection;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import domain.User;
 
 public class UserDAOImpl implements UserDAO{
     private static final String SQL_FIND_BY_ID =
-            "SELECT user_name, user_email, user_role FROM userTest WHERE user_id = ?"; 
+            "SELECT user_id, user_name, user_email, user_role FROM userTest WHERE user_id = ?"; 
     private static final String SQL_FIND_BY_EMAIL =
-            "SELECT user_name, user_email, user_role FROM userTest WHERE email = ?";
+            "SELECT user_id, user_name, user_email, user_role FROM userTest WHERE email = ?";
     private static final String SQL_LIST =
-            "SELECT user_name, user_email, user_role FROM userTest";
+            "SELECT user_id, user_name, user_email, user_role FROM userTest";
     private static final String SQL_INSERT =
             "INSERT INTO userTest (user_name, user_password, user_email, user_role) VALUES (?, MD5(?), ?, ?)";
     private static final String SQL_UPDATE =
@@ -25,38 +28,86 @@ public class UserDAOImpl implements UserDAO{
             "UPDATE userTest SET password = MD5(?) WHERE id = ?";
 
     @Override
-    public User find(Long id) throws RuntimeException {
-        return find(SQL_FIND_BY_ID, id);
-    }
-
-    @Override
-    public User find(String email, String password) throws RuntimeException {
-        return find(SQL_FIND_BY_EMAIL, email, password);
-    }
-    
-    private User find(String sql, Object... values){
+    public User find(Integer id) throws RuntimeException {
+        User user = new User();
         MysqlDAOFactory connect = new MysqlDAOFactory();
         connect.initProperties();
         try {
-            connect.getConnection();
-            
-            
-        } catch (SQLException e) {
+           PreparedStatement statement = connect.getConnection().prepareStatement(SQL_FIND_BY_ID);
+            statement.setInt(1, id);
+            ResultSet rs = statement.executeQuery();
+            if(rs.next()){
+            user = map(rs);
+            }
+        } 
+        catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+        return user;
     }
 
     @Override
+    public User find(String email) throws RuntimeException {
+        User user = new User();
+        MysqlDAOFactory connect = new MysqlDAOFactory();
+        connect.initProperties();
+        try {
+           PreparedStatement statement = connect.getConnection().prepareStatement(SQL_FIND_BY_ID);
+            statement.setString(1, email);
+            ResultSet rs = statement.executeQuery();
+            if(rs.next()){
+            user = map(rs);
+            }
+        } 
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return user;
+    }
+    
+    @Override
     public List<User> list() throws RuntimeException {
-        // TODO Auto-generated method stub
-        return null;
+        User user = new User();
+        List<User> listUser = new ArrayList<>();
+        MysqlDAOFactory connect = new MysqlDAOFactory();
+        connect.initProperties();
+        try {
+           PreparedStatement statement = connect.getConnection().prepareStatement(SQL_LIST);
+            ResultSet rs = statement.executeQuery();
+               while(rs.next()){
+                  listUser.add(map(rs));
+               }
+        } 
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return listUser;
     }
 
     @Override
     public void createUser(User user) throws RuntimeException {
-        // TODO Auto-generated method stub
-        
+        // SQL_INSERT
+        if (user.getUserId() != null) {
+            throw new IllegalArgumentException("User is already created, the user ID is not null.");
+        }
+        Object[] values ={
+                user.getUserName(),
+                user.getUserPassword(),
+                user.getUserEmail(),
+                user.getUserRole()};
+        MysqlDAOFactory connect = new MysqlDAOFactory();
+        connect.initProperties();
+        try {
+           PreparedStatement statement = connect.getConnection().prepareStatement(SQL_INSERT);
+           for(int i=0;i<values.length;i++){
+               statement.setObject(i+1, values[i]);
+           }
+           ResultSet rs = statement.executeQuery();
+               
+        } 
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -91,10 +142,19 @@ public class UserDAOImpl implements UserDAO{
      */
     private static User map(ResultSet resultSet) throws SQLException {
         User user = new User();
-        user.setUserId(resultSet.getLong("user_id"));
+        while(resultSet.next()){
+        user.setUserId((long)resultSet.getLong("user_id"));
         user.setUserName(resultSet.getString("user_name"));
         user.setUserEmail(resultSet.getString("user_email"));
+        user.setUserRole(resultSet.getString("user_role"));
+        }
         return user;
+    }
+    
+    public static void main(String[] args) {
+        UserDAOImpl userDAO = new UserDAOImpl();
+        User user = userDAO.find(2);
+        System.out.println(user);
     }
 
 }

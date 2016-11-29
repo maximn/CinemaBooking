@@ -14,8 +14,8 @@ import domain.User;
  *
  */
 public interface UserDAO {
-    public User find(Long id) throws RuntimeException;
-    public User find(String email, String password) throws RuntimeException;
+    public User find(Integer id) throws RuntimeException;
+    public User find(String email) throws RuntimeException;
     public List<User> list() throws RuntimeException;
     public void createUser(User user) throws RuntimeException;
     public void update(User user) throws IllegalArgumentException, RuntimeException;

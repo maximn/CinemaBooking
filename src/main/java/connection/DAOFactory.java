@@ -23,7 +23,7 @@ public abstract class DAOFactory {
      * @return A connection to the database.
      * @throws SQLException If the connection fails.
      */
-    abstract void getConnection() throws SQLException;
+    abstract Connection getConnection() throws SQLException;
     
     public static DAOFactory getDAOFactory(){
         return new MysqlDAOFactory();
