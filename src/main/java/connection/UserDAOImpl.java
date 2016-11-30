@@ -13,7 +13,7 @@ public class UserDAOImpl implements UserDAO{
     private static final String SQL_FIND_BY_ID =
             "SELECT user_id, user_name, user_email, user_role FROM userTest WHERE user_id = ?"; 
     private static final String SQL_FIND_BY_EMAIL =
-            "SELECT user_id, user_name, user_email, user_role FROM userTest WHERE email = ?";
+            "SELECT user_id, user_name, user_email, user_role FROM userTest WHERE user_email = ?";
     private static final String SQL_LIST =
             "SELECT user_id, user_name, user_email, user_role FROM userTest";
     private static final String SQL_INSERT =
@@ -36,7 +36,7 @@ public class UserDAOImpl implements UserDAO{
            PreparedStatement statement = connect.getConnection().prepareStatement(SQL_FIND_BY_ID);
             statement.setInt(1, id);
             ResultSet rs = statement.executeQuery();
-            if(rs.next()){
+            while(rs.next()){
             user = map(rs);
             }
         } 
@@ -52,12 +52,13 @@ public class UserDAOImpl implements UserDAO{
         MysqlDAOFactory connect = new MysqlDAOFactory();
         connect.initProperties();
         try {
-           PreparedStatement statement = connect.getConnection().prepareStatement(SQL_FIND_BY_ID);
+           PreparedStatement statement = connect.getConnection().prepareStatement(SQL_FIND_BY_EMAIL);
             statement.setString(1, email);
             ResultSet rs = statement.executeQuery();
-            if(rs.next()){
+            while(rs.next()){
             user = map(rs);
             }
+            
         } 
         catch (SQLException e) {
             e.printStackTrace();
@@ -75,7 +76,9 @@ public class UserDAOImpl implements UserDAO{
            PreparedStatement statement = connect.getConnection().prepareStatement(SQL_LIST);
             ResultSet rs = statement.executeQuery();
                while(rs.next()){
-                  listUser.add(map(rs));
+                   //int i=0; i++;
+                   //System.out.println(rs.getString(i));
+                  listUser.add((User)map(rs));
                }
         } 
         catch (SQLException e) {
@@ -86,7 +89,6 @@ public class UserDAOImpl implements UserDAO{
 
     @Override
     public void createUser(User user) throws RuntimeException {
-        // SQL_INSERT
         if (user.getUserId() != null) {
             throw new IllegalArgumentException("User is already created, the user ID is not null.");
         }
@@ -100,9 +102,9 @@ public class UserDAOImpl implements UserDAO{
         try {
            PreparedStatement statement = connect.getConnection().prepareStatement(SQL_INSERT);
            for(int i=0;i<values.length;i++){
-               statement.setObject(i+1, values[i]);
+               statement.setString(i+1, (String) values[i]);
            }
-           ResultSet rs = statement.executeQuery();
+           statement.executeUpdate();
                
         } 
         catch (SQLException e) {
@@ -142,18 +144,24 @@ public class UserDAOImpl implements UserDAO{
      */
     private static User map(ResultSet resultSet) throws SQLException {
         User user = new User();
-        while(resultSet.next()){
+       // while(resultSet.next()){
         user.setUserId((long)resultSet.getLong("user_id"));
         user.setUserName(resultSet.getString("user_name"));
         user.setUserEmail(resultSet.getString("user_email"));
         user.setUserRole(resultSet.getString("user_role"));
-        }
+        //}
         return user;
     }
     
     public static void main(String[] args) {
         UserDAOImpl userDAO = new UserDAOImpl();
-        User user = userDAO.find(2);
+        List<User> userList = userDAO.list();
+        for(User u: userList){
+            System.out.println(u.toString());
+        }
+        //User user1= new User(null, "nickolas", "press", "nickolas@ltddd.ua", "user");
+        //userDAO.createUser(user1);
+        User user = userDAO.find("bigg@com.com");
         System.out.println(user);
     }
 
