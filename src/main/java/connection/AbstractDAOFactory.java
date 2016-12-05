@@ -11,7 +11,7 @@ import java.sql.SQLException;
  * @author Artem Meleshko
  * @version 1.0 2016
  */
-public abstract class DAOFactory {
+public abstract class AbstractDAOFactory {
     public abstract UserDAO getUserDAO();
     public abstract SessionDAO getSessionDAO();
     public abstract FilmDAO getFilmDAO();
@@ -25,7 +25,7 @@ public abstract class DAOFactory {
      */
     abstract Connection getConnection() throws SQLException;
     
-    public static DAOFactory getDAOFactory(){
+    public static AbstractDAOFactory getDAOFactory(){
         return new MysqlDAOFactory();
     }
 

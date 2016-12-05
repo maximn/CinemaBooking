@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
 
-public class MysqlDAOFactory extends DAOFactory {
+public class MysqlDAOFactory extends AbstractDAOFactory {
     public static final String DRIVER="com.mysql.cj.jdbc.Driver";
     public static final String DBURL="jdbc:mysql://localhost/test";
     
