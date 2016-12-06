@@ -4,12 +4,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
 import domain.User;
 
-public class UserDAOImpl implements UserDAO{
+public class UserDAOImpl extends AbstractDAO implements UserDAO {
     private static final String SQL_FIND_BY_ID =
             "SELECT user_id, user_name, user_email, user_role FROM userTest WHERE user_id = ?"; 
     private static final String SQL_FIND_BY_EMAIL =
@@ -26,28 +27,44 @@ public class UserDAOImpl implements UserDAO{
             "SELECT id FROM userTest WHERE user_email = ?";
     private static final String SQL_CHANGE_PASSWORD =
             "UPDATE userTest SET password = MD5(?) WHERE id = ?";
-
+    
     @Override
-    public User find(Integer id) throws RuntimeException {
+    public User find(Connection connect, List values){
         User user = new User();
-        MysqlDAOFactory connect = new MysqlDAOFactory();
-        connect.initProperties();
         try {
-           PreparedStatement statement = connect.getConnection().prepareStatement(SQL_FIND_BY_ID);
-            statement.setInt(1, id);
-            ResultSet rs = statement.executeQuery();
+            ResultSet rs = executeQuery(connect, SQL_FIND_BY_ID, values);
             while(rs.next()){
-            user = map(rs);
+                user = map(rs);
             }
-        } 
-        catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return user;
     }
 
+
+    
+    //    @Override
+//    public User find(Integer id) throws RuntimeException {
+//        User user = new User();
+//        MysqlDAOFactory connect = new MysqlDAOFactory();
+//        connect.initProperties();
+//        try {
+//           PreparedStatement statement = connect.getConnection().prepareStatement(SQL_FIND_BY_ID);
+//            statement.setInt(1, id);
+//            ResultSet rs = statement.executeQuery();
+//            while(rs.next()){
+//            user = map(rs);
+//            }
+//        } 
+//        catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        return user;
+//    }
+
     @Override
-    public User find(String email) throws RuntimeException {
+    public User findEmail(String email) throws RuntimeException {
         User user = new User();
         MysqlDAOFactory connect = new MysqlDAOFactory();
         connect.initProperties();
@@ -161,8 +178,24 @@ public class UserDAOImpl implements UserDAO{
         }
         //User user1= new User(null, "nickolas", "press", "nickolas@ltddd.ua", "user");
         //userDAO.createUser(user1);
-        User user = userDAO.find("bigg@com.com");
+        User user = userDAO.findEmail("bigg@com.com");
         System.out.println(user);
+       
+        //------------------------------------------------------------------------------
+        
+        List list = new ArrayList();
+        int id = 9;
+        list.add(id);
+        ConnectionDB connect = new ConnectionMysqlDB();
+        try {
+            Connection con = connect.getConnection();
+            User user1 = userDAO.find(con, list);
+            System.out.println(user1);
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        
     }
 
 }
