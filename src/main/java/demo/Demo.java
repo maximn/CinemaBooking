@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import connection.ConnectionDB;
+import connection.ConnectionH2DB;
 import connection.ConnectionMysqlDB;
 import connection.DBConnection;
 import connection.MysqlDAOFactory;
@@ -75,6 +77,23 @@ public class Demo {
         
        // Statement myStmt =myConn.createStatement();
         
+     //-------------------H2 DEMO Connection ------------------------------------------------
+        String Qx= "CREATE TABLE user(id int(10) AUTO_INCREMENT PRIMARY KEY, login char(255), password char(255))";
+        String In = "INSERT INTO user(login, password)VALUES('daron', '23471')";
+        ConnectionDB connectt = new ConnectionH2DB();
+        
+        try {
+            Connection h2Con = connectt.getConnection();
+            Statement myStmt = h2Con.createStatement();
+             myStmt.execute(In);
+             System.out.println("Ok");
+             ResultSet myRs = myStmt.executeQuery("select * from user");
+             while(myRs.next()){
+                 System.out.println(myRs.getString("login")+ ", " + myRs.getString("password") );
+             }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
  
