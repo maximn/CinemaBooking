@@ -85,7 +85,7 @@ public class Demo {
         try {
             Connection h2Con = connectt.getConnection();
             Statement myStmt = h2Con.createStatement();
-             myStmt.execute(In);
+            // myStmt.execute(In);
              System.out.println("Ok");
              ResultSet myRs = myStmt.executeQuery("select * from user");
              while(myRs.next()){

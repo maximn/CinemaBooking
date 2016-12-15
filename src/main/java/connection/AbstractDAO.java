@@ -35,7 +35,6 @@ public abstract class AbstractDAO {
     } 
     
     public static void updateQuery(Connection connect, String query, List values){
-        ResultSet result = null;
         try {
             PreparedStatement statement = connect.prepareStatement(query);
             for(int i=0;i<values.size();i++){
