@@ -66,7 +66,7 @@ public interface UserDAO {
     public void update(Connection connect, List values) throws IllegalArgumentException, RuntimeException;
     
     /**
-     * Deleted user from the database matching with the given email.
+     * Deletes user from the database matching with the given email.
      * @param connect (Connection) object with already existed connection to the database.
      * @param email user's email.
      * @throws RuntimeException if something fails at the database level.
