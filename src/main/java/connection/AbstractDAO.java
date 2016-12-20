@@ -19,8 +19,17 @@ import domain.User;
  *
  */
 public abstract class AbstractDAO {
+    private ConnectionDB connection;
     
-    protected static ResultSet executeQuery(Connection connect, String query, List values){
+    protected Connection getConnection() throws SQLException{
+        return connection.getConnection();
+    }
+    
+    protected void setConnection(ConnectionDB connection){
+        this.connection=connection;
+    }
+    
+    protected ResultSet executeQuery(Connection connect, String query, List values){
         ResultSet result = null;
         try {
             PreparedStatement statement = connect.prepareStatement(query);
@@ -34,11 +43,11 @@ public abstract class AbstractDAO {
         return result;
     } 
     
-    protected void updateQuery(Connection connect, String query, List values){
+    protected void updateQuery(String query, Object[] values){
         try {
-            PreparedStatement statement = connect.prepareStatement(query);
-            for(int i=0;i<values.size();i++){
-                statement.setObject(i+1, values.get(i));
+            PreparedStatement statement = getConnection().prepareStatement(query);
+            for(int i=0;i<values.length;i++){
+                statement.setObject(i+1, values[i]);
             }
             statement.executeUpdate();
         } catch (SQLException e) {

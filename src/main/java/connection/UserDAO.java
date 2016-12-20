@@ -25,7 +25,7 @@ public interface UserDAO {
      * with the fields filled with null.
      * @throws RuntimeException if something fails at the database level.
      */
-    public User findId(Connection connect, List values) throws RuntimeException;
+    public User findId(Integer id) throws RuntimeException;
     
     /**
      * Returns user from the database matching the given user_email in the List, otherwise returns User object 
@@ -36,7 +36,7 @@ public interface UserDAO {
      * with the fields filled with null.
      * @throws RuntimeException if something fails at the database level.
      */
-    public User findEmail(Connection connect, List values) throws RuntimeException;
+    public User findEmail(String email) throws RuntimeException;
     
     /**
      * Returns a list of all users from the database. The list is never null and is empty 
@@ -45,7 +45,7 @@ public interface UserDAO {
      * @return  a list of all users from the database.
      * @throws RuntimeException if something fails at the database level.
      */
-    public List<User> list(Connection connect) throws RuntimeException;
+    public List<User> list() throws RuntimeException;
     
     /**
      * Create a new user in the database. The user_id must be null, database will generate a new user_id.
@@ -53,17 +53,17 @@ public interface UserDAO {
      * @param values a list with the user's parameters to be created in the database.
      * @throws RuntimeException if something fails at the database level.
      */
-    public void createUser(Connection connect, List values) throws RuntimeException;
+    public void createUser(User user) throws RuntimeException;
     
     /**
-     * Update the given user in the database. user_id must not be null, otherwise it will throw 
+     * Updates the given user in the database. user_id must not be null, otherwise it will throw 
      * IllegalArgumentException. Note: the password will not be updated. Use changePassword() instead. 
      * @param connect (Connection) object with already existed connection to the database.
      * @param values a list with the user's parameters to be updated in the database.
      * @throws IllegalArgumentException if the user_id is null.
      * @throws RuntimeException if something fails at the database level.
      */
-    public void update(Connection connect, List values) throws IllegalArgumentException, RuntimeException;
+    public void update(User user) throws IllegalArgumentException, RuntimeException;
     
     /**
      * Deletes user from the database matching with the given email.
@@ -71,7 +71,7 @@ public interface UserDAO {
      * @param email user's email.
      * @throws RuntimeException if something fails at the database level.
      */
-    public void deleteByEmail(Connection connect, String email) throws RuntimeException;
+    public void deleteByEmail(User user) throws RuntimeException;
     
     /**
      * Returns true if the given email exists in the database.
@@ -80,14 +80,15 @@ public interface UserDAO {
      * @return true if the given email exists in the database.
      * @throws RuntimeException if something fails at the database level.
      */
-    public boolean existEmail(Connection connect, String email) throws RuntimeException;
+    public boolean existEmail(String email) throws RuntimeException;
     
     /**
-     * Change the password of the given user.
+     * Changes the password of the given user. user_id must not be null, otherwise it will throw 
+     * IllegalArgumentException.
      * @param connect (Connection) object with already existed connection to the database.
      * @param values a list with the new password and user_id in the database.
      * @throws RuntimeException if something fails at the database level.
      */
-    public void changePassword(Connection connect, List values) throws RuntimeException;
+    public void changePassword(User user) throws IllegalArgumentException, RuntimeException;
 
 }

@@ -35,10 +35,12 @@ public class UserDAOImpl extends AbstractDAO implements UserDAO {
             "UPDATE userTest SET user_password = MD5(?) WHERE user_id = ?";
     
     @Override
-    public User findId(Connection connect, List values){
+    public User findId(Integer id){
         User user = new User();
         try {
-            ResultSet rs = executeQuery(connect, SQL_FIND_BY_ID, values);
+            PreparedStatement statement = getConnection().prepareStatement(SQL_FIND_BY_ID);
+            statement.setInt(1, id);
+            ResultSet rs = statement.executeQuery();
             while(rs.next()){
                 user = map(rs);
             }
@@ -49,10 +51,12 @@ public class UserDAOImpl extends AbstractDAO implements UserDAO {
     }
 
     @Override
-    public User findEmail(Connection connect, List values) throws RuntimeException {
+    public User findEmail(String email) throws RuntimeException {
         User user = new User();
         try {
-            ResultSet rs = executeQuery(connect, SQL_FIND_BY_EMAIL, values);
+            PreparedStatement statement = getConnection().prepareStatement(SQL_FIND_BY_EMAIL);
+            statement.setString(1, email);
+            ResultSet rs = statement.executeQuery();
             while(rs.next()){
                 user = map(rs);
             }
@@ -64,11 +68,11 @@ public class UserDAOImpl extends AbstractDAO implements UserDAO {
     }
     
     @Override
-    public List<User> list(Connection connect) throws RuntimeException {
+    public List<User> list() throws RuntimeException {
         User user = new User();
         List<User> listUser = new ArrayList<>();
         try {
-           PreparedStatement statement = connect.prepareStatement(SQL_LIST);
+           PreparedStatement statement = getConnection().prepareStatement(SQL_LIST);
             ResultSet rs = statement.executeQuery();
                while(rs.next()){
                   listUser.add((User)map(rs));
@@ -81,21 +85,33 @@ public class UserDAOImpl extends AbstractDAO implements UserDAO {
     }
 
     @Override
-    public void createUser(Connection connect, List values) throws RuntimeException {
-        updateQuery(connect, SQL_INSERT, values);
+    public void createUser(User user) throws RuntimeException {
+        Object[] values = {
+            user.getUserName(),
+            user.getUserPassword(),
+            user.getUserEmail(),
+            user.getUserRole()
+        };
+        updateQuery(SQL_INSERT, values);
  }
 
     @Override
-    public void update(Connection connect, List values) throws IllegalArgumentException, RuntimeException {
-        updateQuery(connect, SQL_UPDATE, values);
+    public void update(User user) throws IllegalArgumentException, RuntimeException {
+        Object[] values = {
+          user.getUserName(),
+          user.getUserEmail(),
+          user.getUserRole(),
+          user.getUserId()
+        };
+        updateQuery(SQL_UPDATE, values);
         
     }
 
     @Override
-    public void deleteByEmail(Connection connect, String email) throws RuntimeException {
+    public void deleteByEmail(User user) throws RuntimeException {
         try {
-            PreparedStatement statement = connect.prepareStatement(SQL_DELETE);
-            statement.setString(1, email);
+            PreparedStatement statement = getConnection().prepareStatement(SQL_DELETE);
+            statement.setString(1, user.getUserEmail());
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -103,11 +119,11 @@ public class UserDAOImpl extends AbstractDAO implements UserDAO {
     }
 
     @Override
-    public boolean existEmail(Connection connect, String email) throws RuntimeException {
+    public boolean existEmail(String email) throws RuntimeException {
         boolean result = false;
         ResultSet rs = null;
         try {
-            PreparedStatement statement = connect.prepareStatement(SQL_EXIST_EMAIL);
+            PreparedStatement statement = getConnection().prepareStatement(SQL_EXIST_EMAIL);
             statement.setString(1, email);
             rs = statement.executeQuery();
             result = rs.next();
@@ -118,8 +134,12 @@ public class UserDAOImpl extends AbstractDAO implements UserDAO {
     }
 
     @Override
-    public void changePassword(Connection connect, List values) throws RuntimeException {
-        updateQuery(connect, SQL_CHANGE_PASSWORD, values);
+    public void changePassword(User user) throws RuntimeException {
+        Object[] values ={
+                user.getUserPassword(),
+                user.getUserId()
+        };
+        updateQuery(SQL_CHANGE_PASSWORD, values);
     }
     
     /**
@@ -141,26 +161,18 @@ public class UserDAOImpl extends AbstractDAO implements UserDAO {
     
     public static void main(String[] args) {
         UserDAOImpl userDAO = new UserDAOImpl();
-        ConnectionDB connect1 = new ConnectionMysqlDB();
+        userDAO.setConnection(new ConnectionMysqlDB());
         List<User> userList;
         try {
-            userList = userDAO.list((Connection)connect1.getConnection());
+            userList = userDAO.list();
             for(User u: userList){
                  System.out.println(u.toString());
             }
         } catch (RuntimeException e1) {
             // TODO Auto-generated catch block
             e1.printStackTrace();
-        } catch (SQLException e1) {
-            // TODO Auto-generated catch block
-            e1.printStackTrace();
         }
-        
-        //User user1= new User(null, "nickolas", "press", "nickolas@ltddd.ua", "user");
-        //userDAO.createUser(user1);
-        //User user = userDAO.findEmail("bigg@com.com");
-        //System.out.println(user);
-       
+                       
         //------------------------------------------------------------------------------
         
         List list = new ArrayList();
@@ -168,37 +180,26 @@ public class UserDAOImpl extends AbstractDAO implements UserDAO {
         String email = "bigg@com.com";
         list.add(email);
         ConnectionDB connect = new ConnectionMysqlDB();
+        userDAO.setConnection(new ConnectionMysqlDB());
         try {
-            Connection con = connect.getConnection();
-            User user1 = userDAO.findEmail(con, list);
-            System.out.println(user1);
+            Connection con = userDAO.getConnection();
+            User user1 = userDAO.findEmail(email);
+            System.out.println("User findEmail: " + user1);
+            user1 = userDAO.findId(id);
+            System.out.println("User fingId: " + user1);
+            User user2 = new User((long)10, "Taddy", "sdfSDGADFH", "taddy@tadd.com", "user");
+            //userDAO.createUser(user2);
+            //userDAO.update(user2);
+            //userDAO.changePassword(user2);
+            System.out.println(userDAO.existEmail("fsjdkfh"));
+            //userDAO.deleteByEmail(user2);
+            
             
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
         
-        //user_name, user_password, user_email, user_role 
-        //SET user_name = ?, user_email = ?, user_role= ? WHERE id = ?";
-        int id1 = 2;
-        List listUser = new ArrayList();
-        listUser.add("Password");
-        //listUser.add("billAnderson");
-        //listUser.add("bill@bgg.com");
-        //listUser.add("user");
-        listUser.add(id1);
-        try {
-            Connection con1 = connect.getConnection();
-            //userDAO.changePassword(con1, listUser);
-            //boolean result = userDAO.existEmail(con1, "bigg@com.com");
-            //System.out.println(result);
-            //userDAO.deleteByEmail(con1, "bill@bgg.com");
-            //userDAO.update(con1, listUser);
-            
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
     }
 
 }
