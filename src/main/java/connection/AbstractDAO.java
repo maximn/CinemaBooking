@@ -20,7 +20,7 @@ import domain.User;
  */
 public abstract class AbstractDAO {
     
-    public static ResultSet executeQuery(Connection connect, String query, List values){
+    protected static ResultSet executeQuery(Connection connect, String query, List values){
         ResultSet result = null;
         try {
             PreparedStatement statement = connect.prepareStatement(query);
@@ -34,7 +34,7 @@ public abstract class AbstractDAO {
         return result;
     } 
     
-    public static void updateQuery(Connection connect, String query, List values){
+    protected void updateQuery(Connection connect, String query, List values){
         try {
             PreparedStatement statement = connect.prepareStatement(query);
             for(int i=0;i<values.size();i++){

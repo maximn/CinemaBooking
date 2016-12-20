@@ -13,6 +13,7 @@ public class Seat {
     private Integer seatNum;
     private Integer seatRow;
     private String seatHall;
+    private String seatStatus;
     private Set<Session> sessions = new LinkedHashSet<Session>();
         
     /**
@@ -21,11 +22,12 @@ public class Seat {
      * @param seatStatus is a seat's status (reserved, booked, free);
      */
     
-    private Seat(Integer seatId, Integer seatNum, Integer seatRow, String seatHall, Set sessions){
+    private Seat(Integer seatId, Integer seatNum, Integer seatRow, String seatHall, String seatStatus, Set sessions){
         this.seatId=seatId;
         this.seatNum=seatNum;
         this.seatRow=seatRow;
         this.seatHall=seatHall;
+        this.seatStatus=seatStatus;
         this.sessions=sessions;
     }
     
@@ -33,7 +35,7 @@ public class Seat {
      * Constructs and initialized Seat object with the empty fields.
      */
     public Seat(){
-        this(null, null, null, null, null);
+        this(null, null, null, null, null, null);
     }
    
     /**
@@ -97,6 +99,20 @@ public class Seat {
      */
     public Set<Session> getSessions() {
         return sessions;
+    }
+
+    /**
+     * @return the seatStatus
+     */
+    public String getSeatStatus() {
+        return seatStatus;
+    }
+
+    /**
+     * @param seatStatus the seatStatus to set
+     */
+    public void setSeatStatus(String seatStatus) {
+        this.seatStatus = seatStatus;
     }
 
     /**
