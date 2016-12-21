@@ -187,7 +187,7 @@ public class UserDAOImpl extends AbstractDAO implements UserDAO {
             System.out.println("User findEmail: " + user1);
             user1 = userDAO.findId(id);
             System.out.println("User fingId: " + user1);
-            User user2 = new User((long)10, "Taddy", "sdfSDGADFH", "taddy@tadd.com", "user");
+            User user2 = new User(null, "Taddy", "sdfSDGADFH", "taddy@tadd.com", "user");
             //userDAO.createUser(user2);
             //userDAO.update(user2);
             //userDAO.changePassword(user2);

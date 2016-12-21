@@ -80,16 +80,24 @@ public class Demo {
      //-------------------H2 DEMO Connection ------------------------------------------------
         String Qx= "CREATE TABLE user(id int(10) AUTO_INCREMENT PRIMARY KEY, login char(255), password char(255))";
         String In = "INSERT INTO user(login, password)VALUES('daron', '23471')";
+        String Qx1 = "CREATE TABLE userTest(user_id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT, user_name VARCHAR(60) NULL, user_password VARCHAR(32) NOT NULL, user_email VARCHAR(60) NOT NULL, user_role VARCHAR(60) NULL, PRIMARY KEY (user_id), UNIQUE (user_email))";
+        String In1 = "INSERT INTO userTest(user_name, user_password, user_email, user_role)VALUES('daron', '23471', 'arar@com.com', 'user')";
+        
         ConnectionDB connectt = new ConnectionH2DB();
+        UserDAOImpl userDAO1 = new UserDAOImpl();
+        userDAO1.setConnection(new ConnectionH2DB());
         
         try {
-            Connection h2Con = connectt.getConnection();
+            Connection h2Con = userDAO1.getConnection();
             Statement myStmt = h2Con.createStatement();
-            // myStmt.execute(In);
+            myStmt.execute(Qx1);
+            myStmt.execute(In1);
+            //myStmt.execute("INSERT INTO user(login, password)VALUES('Baron', 'e3s471')");
              System.out.println("Ok");
-             ResultSet myRs = myStmt.executeQuery("select * from user");
+             ResultSet myRs = myStmt.executeQuery("select * from userTest");
              while(myRs.next()){
-                 System.out.println(myRs.getString("login")+ ", " + myRs.getString("password") );
+                 //System.out.println(myRs.getString("login")+ ", " + myRs.getString("password") );
+                 System.out.println(myRs.getString("user_name")+ ", " + myRs.getString("user_email") );
              }
         } catch (SQLException e) {
             e.printStackTrace();

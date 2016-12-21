@@ -21,11 +21,11 @@ import domain.User;
 public abstract class AbstractDAO {
     private ConnectionDB connection;
     
-    protected Connection getConnection() throws SQLException{
+    public Connection getConnection() throws SQLException{
         return connection.getConnection();
     }
     
-    protected void setConnection(ConnectionDB connection){
+    public void setConnection(ConnectionDB connection){
         this.connection=connection;
     }
     

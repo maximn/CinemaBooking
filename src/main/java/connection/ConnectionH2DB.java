@@ -16,7 +16,8 @@ import java.util.Properties;
  */
 public class ConnectionH2DB extends ConnectionDB {
     public static final String DRIVER = "org.h2.Driver";
-    public static final String DBURL = "jdbc:h2:~/test;MODE=MSSQLServer;IFEXISTS=TRUE";
+    public static final String DBURL = "jdbc:h2:~/test;MODE=MySQL;IFEXISTS=TRUE";
+    public static final String DBURL1 = "jdbc:h2:mem:testdb;MODE=MySQL;IGNORECASE=TRUE;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE";
     
     private String root = "sa";
     private String password = "";
@@ -30,7 +31,7 @@ public class ConnectionH2DB extends ConnectionDB {
         properties.setProperty("characterEncoding", "ASC");
         properties.setProperty("useUnocode", "true");
         
-        System.out.println("URL:" + DBURL);
+        System.out.println("URL:" + DBURL1);
         
     }
 
@@ -39,7 +40,7 @@ public class ConnectionH2DB extends ConnectionDB {
         if (h2Connect == null)
             try {
                 Class.forName("org.h2.Driver");
-                h2Connect = DriverManager.getConnection(DBURL, root, password);
+                h2Connect = DriverManager.getConnection(DBURL1, root, password);
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             } 
