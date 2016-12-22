@@ -17,7 +17,7 @@ import java.util.Properties;
 public class ConnectionH2DB extends ConnectionDB {
     public static final String DRIVER = "org.h2.Driver";
     public static final String DBURL = "jdbc:h2:~/test;MODE=MySQL;IFEXISTS=TRUE";
-    public static final String DBURL1 = "jdbc:h2:mem:testdb;MODE=MySQL;IGNORECASE=TRUE;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE";
+    public static final String DBURL1 = "jdbc:h2:mem:testdb;MODE=MySQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE"; //IGNORECASE=TRUE
     
     private String root = "sa";
     private String password = "";

@@ -6,6 +6,7 @@ package connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -14,6 +15,7 @@ import javax.script.ScriptException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.util.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.jdbc.datasource.init.ScriptUtils;
@@ -59,10 +61,6 @@ public class UserDAOImplTest {
     
     @Test
     public void existEmailTest(){
-        //user_name, user_password, user_email, user_role
-        User user = new User(null, "Nick", "32344", "nick@nick.com", "user");
-        userDAO.setConnection(connect);
-        //userDAO.createUser(user);
         assertTrue(userDAO.existEmail("arar@com.com"));
     }
     
@@ -74,6 +72,37 @@ public class UserDAOImplTest {
         //userDAO.createUser(user);
         //assertTrue(userDAO.createUser(user), true);
     }
+    
+    @Test
+    public void findIdTest(){
+        User user = userDAO.findId(1);
+        User user1 = new User((long)1,"arar", "23471", "arar@com.com", "user");
+        assertEquals(user.equals(user1),true);
+    }
+    
+    @Test
+    public void findEmailTest(){
+        User user = userDAO.findEmail("arar@com.com");
+        User user1 = new User((long)1,"arar", "23471", "arar@com.com", "user");
+        assertEquals(user.equals(user1), true);
+    }
+    
+    @Test
+    public void listTest(){
+        List<User> userList = userDAO.list();
+        User user = userList.get(0);
+        User user1 = new User((long)1,"arar", "23471", "arar@com.com", "user");
+        assertEquals(user.equals(user1), true);
+    }
+    
+    @Test
+    public void deleteByEmailTest(){
+        User user = userDAO.findEmail("arar@com.com");
+        userDAO.deleteByEmail(user);
+        User user1 = new User();
+        assertEquals(user1, userDAO.findEmail("arar@com.com"));
+    }
+    
 
     /**
      * @param args
