@@ -66,11 +66,25 @@ public class UserDAOImplTest {
     
     @Test
     public void insertUserTest(){
-        //user_name, user_password, user_email, user_role
         User user = new User(null, "Nick", "32344", "nick@nick.com", "user");
-        //userDAO.setConnection(connect);
-        //userDAO.createUser(user);
-        //assertTrue(userDAO.createUser(user), true);
+        userDAO.createUser(user);
+        System.out.println("The first" + userDAO.findId(1).toString());
+        assertTrue(userDAO.existEmail("nick@nick.com"));
+        assertEquals(user.equals(userDAO.findEmail("nick@nick.com")), true);
+    }
+    
+    @Test
+    public void changePasswordTest(){
+        User user1 = new User((long)1, "arar", "234sa71", "arar@com.com", "user");
+        userDAO.changePassword(user1);
+        assertEquals(user1.equals(userDAO.findEmail("arar@com.com")), true);
+    }
+    
+    @Test 
+    public void updateTest(){
+        User user1 = new User((long)1, "Nickk", "345456", "nick@nick.com", "user");
+        userDAO.updateUser(user1);
+        assertEquals(user1.equals(userDAO.findEmail("nick@nick.com")), true);
     }
     
     @Test

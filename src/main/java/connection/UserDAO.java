@@ -63,7 +63,7 @@ public interface UserDAO {
      * @throws IllegalArgumentException if the user_id is null.
      * @throws RuntimeException if something fails at the database level.
      */
-    public void update(User user) throws IllegalArgumentException, RuntimeException;
+    public void updateUser(User user) throws IllegalArgumentException, RuntimeException;
     
     /**
      * Deletes user from the database matching with the given email.

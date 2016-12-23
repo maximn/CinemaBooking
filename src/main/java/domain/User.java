@@ -1,6 +1,9 @@
 package domain;
 
 import java.io.Serializable;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Objects;
 
 /**
@@ -78,7 +81,18 @@ public class User implements Serializable{
      * @param userPassword the userPassword to set
      */
     public void setUserPassword(String userPassword) {
-        this.userPassword = userPassword;
+        String hashUserPassword=null;
+        try {
+            MessageDigest m = MessageDigest.getInstance("MD5");
+            m.reset();
+            m.update(userPassword.getBytes());
+            byte[] digest = m.digest();
+            BigInteger bigInt = new BigInteger(1,digest);
+            hashUserPassword = bigInt.toString(16);
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        this.userPassword =hashUserPassword;
     }
 
     /**

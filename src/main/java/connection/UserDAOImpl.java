@@ -24,7 +24,7 @@ public class UserDAOImpl extends AbstractDAO implements UserDAO {
     private static final String SQL_LIST =
             "SELECT user_id, user_name, user_email, user_role FROM userTest";
     private static final String SQL_INSERT =
-            "INSERT INTO userTest (user_name, user_password, user_email, user_role) VALUES (?, MD5(?), ?, ?)";
+            "INSERT INTO userTest (user_name, user_password, user_email, user_role) VALUES (?, ?, ?, ?)";
     private static final String SQL_UPDATE =
             "UPDATE userTest SET user_name = ?, user_email = ?, user_role= ? WHERE user_id = ?";
     private static final String SQL_DELETE =
@@ -32,7 +32,7 @@ public class UserDAOImpl extends AbstractDAO implements UserDAO {
     private static final String SQL_EXIST_EMAIL =
             "SELECT user_id FROM userTest WHERE user_email = ?";
     private static final String SQL_CHANGE_PASSWORD =
-            "UPDATE userTest SET user_password = MD5(?) WHERE user_id = ?";
+            "UPDATE userTest SET user_password = ? WHERE user_id = ?";
     
     @Override
     public User findId(Integer id){
@@ -96,7 +96,7 @@ public class UserDAOImpl extends AbstractDAO implements UserDAO {
  }
 
     @Override
-    public void update(User user) throws IllegalArgumentException, RuntimeException {
+    public void updateUser(User user) throws IllegalArgumentException, RuntimeException {
         Object[] values = {
           user.getUserName(),
           user.getUserEmail(),
@@ -187,7 +187,8 @@ public class UserDAOImpl extends AbstractDAO implements UserDAO {
             System.out.println("User findEmail: " + user1);
             user1 = userDAO.findId(id);
             System.out.println("User fingId: " + user1);
-            User user2 = new User(null, "Taddy", "sdfSDGADFH", "taddy@tadd.com", "user");
+            User user2 = new User(null, "Modsno", "123432", "modsno@nomo.com", "user");
+            user2.setUserPassword("123432");
             //userDAO.createUser(user2);
             //userDAO.update(user2);
             //userDAO.changePassword(user2);

@@ -1,5 +1,7 @@
 package demo;
 
+import static org.junit.Assert.assertEquals;
+
 import java.sql.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -11,6 +13,7 @@ import connection.ConnectionMysqlDB;
 import connection.DBConnection;
 import connection.MysqlDAOFactory;
 import connection.UserDAOImpl;
+import domain.User;
 
 public class Demo {
     private static final String SQL_FIND_BY_ID =
@@ -80,24 +83,35 @@ public class Demo {
      //-------------------H2 DEMO Connection ------------------------------------------------
         String Qx= "CREATE TABLE user(id int(10) AUTO_INCREMENT PRIMARY KEY, login char(255), password char(255))";
         String In = "INSERT INTO user(login, password)VALUES('daron', '23471')";
-        String Qx1 = "CREATE TABLE userTest(user_id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT, user_name VARCHAR(60) NULL, user_password VARCHAR(32) NOT NULL, user_email VARCHAR(60) NOT NULL, user_role VARCHAR(60) NULL, PRIMARY KEY (user_id), UNIQUE (user_email))";
+        String Qx1 = "CREATE TABLE userTest(user_id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT, user_name VARCHAR(60) NULL, user_password VARCHAR(64) NOT NULL, user_email VARCHAR(60) NOT NULL, user_role VARCHAR(60) NULL, PRIMARY KEY (user_id), UNIQUE (user_email))";
         String In1 = "INSERT INTO userTest(user_name, user_password, user_email, user_role)VALUES('daron', '23471', 'arar@com.com', 'user')";
-        
+        String SQL_UPDATE ="UPDATE userTest SET user_name = 'dapton', user_email = 'arsar@com.com', user_role= 'user' WHERE user_id = 1";
+        //INSERT INTO TEST VALUES(?, HASH('SHA256', STRINGTOUTF8(?), 5))
         ConnectionDB connectt = new ConnectionH2DB();
         UserDAOImpl userDAO1 = new UserDAOImpl();
         userDAO1.setConnection(new ConnectionH2DB());
+        
+ 
+        
+        User user2 = new User(null, "garry", "124523", "email@imil.com", "user");
+        System.out.println(user2);
+        user2.setUserPassword("43214");
+        System.out.println(user2.getUserPassword());
+        
         
         try {
             Connection h2Con = userDAO1.getConnection();
             Statement myStmt = h2Con.createStatement();
             myStmt.execute(Qx1);
             myStmt.execute(In1);
+            myStmt.execute(SQL_UPDATE);
+            //myStmt.executeUpdate("CALL HASH('SHA256', STRINGTOUTF8('Password'), 1000)");
             //myStmt.execute("INSERT INTO user(login, password)VALUES('Baron', 'e3s471')");
              System.out.println("Ok");
              ResultSet myRs = myStmt.executeQuery("select * from userTest");
              while(myRs.next()){
                  //System.out.println(myRs.getString("login")+ ", " + myRs.getString("password") );
-                 System.out.println(myRs.getString("user_name")+ ", " + myRs.getString("user_email") );
+                 System.out.println(myRs.getString("user_name")+ ", " + myRs.getString("user_password")+ ", " + myRs.getString("user_email") );
              }
         } catch (SQLException e) {
             e.printStackTrace();
