@@ -44,8 +44,12 @@ public class UserDAOImpl extends AbstractDAO implements UserDAO {
             while(rs.next()){
                 user = map(rs);
             }
+            
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+        if(user.getUserEmail() == null){
+            return null;
         }
         return user;
     }
@@ -63,6 +67,9 @@ public class UserDAOImpl extends AbstractDAO implements UserDAO {
        } 
         catch (SQLException e) {
             e.printStackTrace();
+        }
+        if(user.getUserEmail() == null){
+            return null;
         }
         return user;
     }
@@ -176,7 +183,7 @@ public class UserDAOImpl extends AbstractDAO implements UserDAO {
         //------------------------------------------------------------------------------
         
         List list = new ArrayList();
-        int id = 9;
+        int id = 19;
         String email = "bigg@com.com";
         list.add(email);
         ConnectionDB connect = new ConnectionMysqlDB();

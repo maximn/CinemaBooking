@@ -45,7 +45,7 @@ public class UserDAOImplTest {
           userDAO.setConnection(connect);
           Statement statement = userDAO.getConnection().createStatement();
           statement.executeUpdate(CREATE_TEST_TABLE);
-          statement.executeUpdate(INSRT_TEST_USER);
+          //statement.executeUpdate(INSRT_TEST_USER);
           //ScriptUtils.executeSqlScript(userDAO.getConnection(), new ClassPathResource("user_t_create.sql"));
         System.out.println("ok");
     }
@@ -61,6 +61,8 @@ public class UserDAOImplTest {
     
     @Test
     public void existEmailTest(){
+        User user = new User((long)1, "arar", "23471", "arar@com.com", "user");
+        userDAO.createUser(user);
         assertTrue(userDAO.existEmail("arar@com.com"));
     }
     
@@ -76,45 +78,51 @@ public class UserDAOImplTest {
     @Test
     public void changePasswordTest(){
         User user1 = new User((long)1, "arar", "234sa71", "arar@com.com", "user");
-        userDAO.changePassword(user1);
-        assertEquals(user1.equals(userDAO.findEmail("arar@com.com")), true);
+        User user2 = new User((long)1, "arar", "23471", "arar@com.com", "user");
+        userDAO.createUser(user1);
+        userDAO.changePassword(user2);
+        //assertEquals(user2.getUserPassword().equals(userDAO.findEmail("arar@com.com").getUserPassword()), true);
+        assertEquals(user2.getUserPassword(), userDAO.findEmail("arar@com.com").getUserPassword());
     }
     
     @Test 
     public void updateTest(){
         User user1 = new User((long)1, "Nickk", "345456", "nick@nick.com", "user");
+        User user2 = new User((long)1, "arar", "23471", "arar@com.com", "user");
+        userDAO.createUser(user2);
         userDAO.updateUser(user1);
         assertEquals(user1.equals(userDAO.findEmail("nick@nick.com")), true);
     }
     
     @Test
     public void findIdTest(){
-        User user = userDAO.findId(1);
-        User user1 = new User((long)1,"arar", "23471", "arar@com.com", "user");
-        assertEquals(user.equals(user1),true);
+        User user = new User(null,"arar", "23471", "arar@com.com", "user");
+        userDAO.createUser(user);
+        assertEquals(user.equals(userDAO.findId(1)),true);
     }
     
     @Test
     public void findEmailTest(){
-        User user = userDAO.findEmail("arar@com.com");
         User user1 = new User((long)1,"arar", "23471", "arar@com.com", "user");
-        assertEquals(user.equals(user1), true);
+        userDAO.createUser(user1);
+        assertEquals(user1.equals(userDAO.findEmail("arar@com.com")), true);
     }
     
     @Test
     public void listTest(){
+        User user1 = new User(null,"arar", "23471", "arar@com.com", "user");
+        userDAO.createUser(user1);
         List<User> userList = userDAO.list();
         User user = userList.get(0);
-        User user1 = new User((long)1,"arar", "23471", "arar@com.com", "user");
         assertEquals(user.equals(user1), true);
     }
     
     @Test
     public void deleteByEmailTest(){
-        User user = userDAO.findEmail("arar@com.com");
+        User user = new User(null,"arar", "23471", "arar@com.com", "user");
+        userDAO.createUser(user);
         userDAO.deleteByEmail(user);
-        User user1 = new User();
-        assertEquals(user1, userDAO.findEmail("arar@com.com"));
+        assertEquals(userDAO.findEmail("arar@com.com")==null, true);
     }
     
 
