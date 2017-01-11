@@ -25,7 +25,7 @@ public interface UserDAO {
      * with the fields filled with null.
      * @throws RuntimeException if something fails at the database level.
      */
-    public User findId(Integer id) throws RuntimeException;
+    public User findId(long id) throws RuntimeException;
     
     /**
      * Returns user from the database matching the given user_email in the List, otherwise returns User object 
