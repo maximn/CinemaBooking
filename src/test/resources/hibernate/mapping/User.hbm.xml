@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+  <class table="users" lazy="false" name="domain.User">
+    <id column="user_id" name="userId" type="java.lang.Long">
+      <generator class="increment"/>
+    </id>
+    <property column="user_name" name="userName" type="java.lang.String"/>
+    <property column="user_password" name="userPassword" type="java.lang.String"/>
+    <property column="user_email" name="userEmail" type="java.lang.String"/>
+    <property column="user_role" name="userRole" type="java.lang.String"/>
+    </class>
+</hibernate-mapping>
