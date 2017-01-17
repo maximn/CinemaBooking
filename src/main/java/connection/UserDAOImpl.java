@@ -20,16 +20,14 @@ import domain.User;
  * @version 1.0 2016
  *
  */
-public class UserDAOImpl implements UserDAO {
+public class UserDAOImpl extends AbstractDAO implements UserDAO {
     
-    private SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
-    
-    @Override
+   @Override
     public User findId(long id){
         User user = new User();
         Session session = null;
         try {
-            session = sessionFactory.openSession();
+            session = getSessionFactory().openSession();
         user = (User) session.get(User.class, id);
         } catch (Exception e){
             e.printStackTrace();
@@ -45,7 +43,7 @@ public class UserDAOImpl implements UserDAO {
         Session session = null;
         User user = new User();
         try {
-            session = sessionFactory.openSession();
+            session = getSessionFactory().openSession();
             user = (User) session.createQuery("FROM User E WHERE E.userEmail = :user_email")
                     .setString("user_email", email)
                     .uniqueResult();
@@ -65,7 +63,7 @@ public class UserDAOImpl implements UserDAO {
         User user = new User();
         List<User> listUser = new ArrayList<User>();
         try {
-           session = sessionFactory.openSession();
+           session = getSessionFactory().openSession();
            listUser = session.createCriteria(User.class).list();
         } 
         catch (Exception e) {
@@ -78,7 +76,7 @@ public class UserDAOImpl implements UserDAO {
     public void createUser(User user) throws RuntimeException {
         Session session = null;
         try {
-            session = sessionFactory.openSession();
+            session = getSessionFactory().openSession();
             session.beginTransaction();
             session.save(user);
             session.getTransaction().commit();
@@ -94,7 +92,7 @@ public class UserDAOImpl implements UserDAO {
     public void updateUser(User user) throws IllegalArgumentException, RuntimeException {
         Session session = null;
         try {
-            session = sessionFactory.openSession();
+            session = getSessionFactory().openSession();
             session.beginTransaction();
             session.update(user);
             session.getTransaction().commit();
@@ -111,7 +109,7 @@ public class UserDAOImpl implements UserDAO {
     public void deleteByEmail(User user) throws RuntimeException {
         Session session = null;
         try {
-            session = sessionFactory.openSession();
+            session = getSessionFactory().openSession();
             session.beginTransaction();
             session.delete(user);
             session.getTransaction().commit();
@@ -126,7 +124,7 @@ public class UserDAOImpl implements UserDAO {
         boolean result = false;
         Session session = null;
         try {
-            session = sessionFactory.openSession();
+            session = getSessionFactory().openSession();
             user = (User) session.createQuery("FROM User E WHERE E.userEmail = :user_email")
                     .setString("user_email", email)
                     .uniqueResult();
@@ -143,7 +141,7 @@ public class UserDAOImpl implements UserDAO {
     public void changePassword(User user) throws RuntimeException {
         Session session = null;
         try {
-            session = sessionFactory.openSession();
+            session = getSessionFactory().openSession();
             session.beginTransaction();
             session.update(user);
             session.getTransaction().commit();
