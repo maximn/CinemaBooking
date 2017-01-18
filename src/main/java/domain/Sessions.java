@@ -12,7 +12,7 @@ import org.joda.time.format.DateTimeFormatter;
  * @version 1.0 2016
  */
 
-public class Session {
+public class Sessions {
     private Integer sessionId;
     private DateTime sessionTime;
     private Film sessionFilm;
@@ -23,7 +23,7 @@ public class Session {
      * @param sessionFilmId is a film's id. 
      */
     
-    public Session(Integer sessionId, DateTime sessionTime, Film sessionFilm){
+    public Sessions(Integer sessionId, DateTime sessionTime, Film sessionFilm){
         this.sessionId=sessionId;
         this.sessionTime=sessionTime;
         this.sessionFilm=sessionFilm;
@@ -33,49 +33,49 @@ public class Session {
      * Constructs and initialized Session object with the empty fields.
      */
     
-    public Session(){
+    public Sessions(){
         this(null, null, null);
     }
 
     /**
      * @return the sessionId
      */
-    public Integer getSessionId() {
+    public Integer getSessionsId() {
         return sessionId;
     }
 
     /**
      * @param sessionId the sessionId to set
      */
-    public void setSessionId(Integer sessionId) {
+    public void setSessionsId(Integer sessionId) {
         this.sessionId = sessionId;
     }
 
     /**
      * @return the sessionTime
      */
-    public DateTime getSessionTime() {
+    public DateTime getSessionsTime() {
         return sessionTime;
     }
 
     /**
      * @param sessionTime the sessionTime to set
      */
-    public void setSessionTime(DateTime sessionTime) {
+    public void setSessionsTime(DateTime sessionTime) {
         this.sessionTime = sessionTime;
     }
 
     /**
      * @return the sessionFilm
      */
-    public Film getSessionFilm() {
+    public Film getSessionsFilm() {
         return sessionFilm;
     }
 
     /**
      * @param sessionFilm the sessionFilm to set
      */
-    public void setSessionFilm(Film sessionFilm) {
+    public void setSessionsFilm(Film sessionFilm) {
         this.sessionFilm = sessionFilm;
     }
 
@@ -108,9 +108,9 @@ public class Session {
     public boolean equals(Object obj) {
         if (this == obj)
             return true;
-        if (!(obj instanceof Session))
+        if (!(obj instanceof Sessions))
             return false;
-        Session other = (Session) obj;
+        Sessions other = (Sessions) obj;
         return (Objects.equals(sessionId, other.sessionId)) && (Objects.equals(sessionTime, other.sessionTime)) 
                 && (Objects.equals(sessionFilm, other.sessionFilm));
     }

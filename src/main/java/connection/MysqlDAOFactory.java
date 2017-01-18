@@ -73,7 +73,7 @@ public class MysqlDAOFactory extends AbstractDAOFactory {
     }
 
     @Override
-    public SessionDAO getSessionDAO() {
+    public SessionsDAO getSessionDAO() {
         // TODO Auto-generated method stub
         return null;
     }

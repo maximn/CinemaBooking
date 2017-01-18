@@ -6,7 +6,7 @@ import java.util.List;
 import org.joda.time.DateTime;
 
 import domain.Film;
-import domain.Session;
+import domain.Sessions;
 
 /**
  * This interface represents a contract for a DAO for the Session model.
@@ -14,7 +14,7 @@ import domain.Session;
  * @version 1.01 2016
  *
  */
-public interface SessionDAO {
+public interface SessionsDAO {
     /**
      * Returns Session from the database matching with the given session_id in the List, otherwise returns Session object
      *  with the fields filled with null.
@@ -22,7 +22,7 @@ public interface SessionDAO {
      * @return returns Session object from the database matching with the given session_id.
      * @throws RuntimeException if something fails at the database level.
      */
-    public Session findId(Integer id) throws RuntimeException;
+    public Sessions findId(Integer id) throws RuntimeException;
     
     /**
      * Returns a list of Session from the database matching with the given film name. The list is never null and is empty 
@@ -31,7 +31,7 @@ public interface SessionDAO {
      * @return list of Session from the database matching with the given film name.
      * @throws RuntimeException if something fails at the database level.
      */
-    public List<Session> findSessionsFilm(Film film) throws RuntimeException;
+    public List<Sessions> findSessionsFilm(Film film) throws RuntimeException;
     
     /**
      * Returns a list of Session from the database matching with the given film DateTime. The list is never null and is empty
@@ -40,7 +40,7 @@ public interface SessionDAO {
      * @return list of Session from the database matching with the given film DateTime.
      * @throws RuntimeException if something fails at the database level.
      */
-    public List<Session> findSessionDate(DateTime sessionsDate) throws RuntimeException;
+    public List<Sessions> findSessionDate(DateTime sessionsDate) throws RuntimeException;
     
     /**
      * Returns a list with all Sessions in the database. The list is never null and is empty
@@ -48,14 +48,14 @@ public interface SessionDAO {
      * @return List with all Sessions in the database.
      * @throws RuntimeException if something fails at the database level.
      */
-    public List<Session> list() throws RuntimeException;
+    public List<Sessions> list() throws RuntimeException;
     
     /**
      * Creates a new Session in the database.
      * @param sessionCinema domain.Session object with the parameters of the session. 
      * @throws RuntimeException if something fails at the database level.
      */
-    public void createSession(Session sessionCinema) throws RuntimeException;
+    public void createSession(Sessions sessionCinema) throws RuntimeException;
     
     /**
      * Update the given session in the database. session_id must not be null, otherwise it will throw 
@@ -65,22 +65,15 @@ public interface SessionDAO {
      * @throws IllegalArgumentException if the session_id is null.
      * @throws RuntimeException if something fails at the database level.
      */
-    public void update(Session sessionCinema) throws IllegalArgumentException, RuntimeException;
+    public void update(Sessions sessionCinema) throws IllegalArgumentException, RuntimeException;
     
     /**
      * Deletes Session from the database matching with given session_id.
      * @param sessionCinema domain.Session object with the parameters of the session to be deleted in the database.
      * @throws RuntimeException if something fails at the database level.
      */
-    public void deleteById(Session sessionCinema) throws RuntimeException;
+    public void deleteById(Sessions sessionCinema) throws RuntimeException;
     
-    /**
-     * Returns true if the given session exists in the database.
-     * @param connect (Connection) object with already existed connection to the database.
-     * @param sessionCinema domain.Session object with the parameters of the session to be found in the database.
-     * @return true if the given session exists in the database.
-     * @throws RuntimeException if something fails at the database level.
-     */
-    public boolean sessionExist(Session sessionCinema) throws RuntimeException;
+    
 
 }

@@ -16,7 +16,7 @@ public class Film {
     private Integer filmYear;
     private String filmLength;
     private String filmDescription;
-    private Set<Session> sessionsSet = new LinkedHashSet<Session>();
+    private Set<Sessions> sessionsSet = new LinkedHashSet<Sessions>();
     
     /**
      * Constructs and initializes Film.
@@ -90,14 +90,14 @@ public class Film {
     /**
      * @return the sessionIdSet
      */
-    public Set<Session> getSessionsSet() {
+    public Set<Sessions> getSessionsSet() {
         return sessionsSet;
     }
 
     /**
      * @param sessionIdSet is the Set(Integer) Collection to set
      */
-    public void setSessionsSet(Set<Session> sessionsSet) {
+    public void setSessionsSet(Set<Sessions> sessionsSet) {
         this.sessionsSet = sessionsSet;
     }
     

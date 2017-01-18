@@ -14,7 +14,7 @@ public class Seat {
     private Integer seatRow;
     private String seatHall;
     private String seatStatus;
-    private Set<Session> sessions = new LinkedHashSet<Session>();
+    private Set<Sessions> sessions = new LinkedHashSet<Sessions>();
         
     /**
      * Constructs and initialized Seat.
@@ -97,7 +97,7 @@ public class Seat {
     /**
      * @return the sessions
      */
-    public Set<Session> getSessions() {
+    public Set<Sessions> getSessions() {
         return sessions;
     }
 
@@ -118,7 +118,7 @@ public class Seat {
     /**
      * @param sessions the sessions to set
      */
-    public void setSessions(Set<Session> sessions) {
+    public void setSessions(Set<Sessions> sessions) {
         this.sessions = sessions;
     }
 

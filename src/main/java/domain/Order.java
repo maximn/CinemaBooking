@@ -13,7 +13,7 @@ public class Order {
     private User user;
     private Seat seatNumber;
     private Film film;
-    private Session session;
+    private Sessions session;
    
     /**
      * Constructs and initializes Order. 
@@ -24,7 +24,7 @@ public class Order {
      * @param sessionId is a unique session's id.
      */
     
-    public Order(Integer orderNumber, User user, Seat seatNumber, Film film, Session session) {
+    public Order(Integer orderNumber, User user, Seat seatNumber, Film film, Sessions session) {
         this.orderId = orderNumber;
         this.user = user;
         this.seatNumber = seatNumber;
@@ -98,14 +98,14 @@ public class Order {
     /**
      * @return the sessionId
      */
-    public Session getSessionId() {
+    public Sessions getSessionId() {
         return session;
     }
 
     /**
      * @param sessionId the sessionId to set
      */
-    public void setSessionId(Session session) {
+    public void setSessionId(Sessions session) {
         this.session = session;
     }
 
