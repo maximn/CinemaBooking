@@ -36,7 +36,7 @@ public class Sessions {
     public Sessions(){
         this(null, null, null);
     }
-
+    
     /**
      * @return the sessionId
      */
@@ -84,7 +84,7 @@ public class Sessions {
      */
     @Override
     public String toString() {
-        DateTimeFormatter fmt = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss");
+        DateTimeFormatter fmt = DateTimeFormat.forPattern("yyyy-MM-dd hh:mm:ss");
         return "Session [sessionId=" + sessionId + "sessionTime=" + fmt.print(sessionTime) + ", sessionFilm=" + sessionFilm + "]";
     }
 

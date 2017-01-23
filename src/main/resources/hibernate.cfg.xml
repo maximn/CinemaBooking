@@ -15,7 +15,7 @@
     <property name="format_sql">true</property>
 
 <!--     create , update -->
-    <property name="hbm2ddl.auto">update</property>  
+    <property name="hbm2ddl.auto">create</property>  
 
   
     <!-- JDBC connection pool (use the built-in) -->
@@ -25,6 +25,10 @@
      
       <mapping resource="hibernate/mapping/User.hbm.xml"/>
      <mapping class="domain.User" />
+     <mapping resource="hibernate/mapping/Sessions.hbm.xml"/>
+     <mapping class="domain.Sessions" />
+     <mapping resource="hibernate/mapping/Film.hbm.xml"/>
+     <mapping class="domain.Film" />
 <!--      <mapping class="com.mastertheboss.domain.Department" /> -->
  
 </session-factory>

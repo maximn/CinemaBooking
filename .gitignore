@@ -3,7 +3,6 @@
 *.war
 *.ear
 *.class
-*.xml
 *.lst
 *.MF
 *.properties

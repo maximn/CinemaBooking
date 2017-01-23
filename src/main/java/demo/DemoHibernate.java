@@ -21,18 +21,18 @@ public class DemoHibernate {
         //session.getTransaction().commit();
         long id = 2;
         String email = "modsno@nomo22.com";
-        user = session.get(User.class, id);
+        //user = session.get(User.class, id);
 //        String hql = "FROM User E WHERE E.userEmail = :user_email";
 //        Query query = session.createQuery(hql);
 //        query.setParameter("user_email",email);
 //        User user1 = (User) query.uniqueResult();
-        User user1 = (User) session.createQuery("FROM User E WHERE E.userEmail = :user_email")
-                .setString("user_email", email)
-                .uniqueResult();
+//        User user1 = (User) session.createQuery("FROM User E WHERE E.userEmail = :user_email")
+//                .setString("user_email", email)
+//                .uniqueResult();
                 
         session.close();
         System.out.println(user);
-        System.out.println(user1);
+        //System.out.println(user1);
         System.out.println("Transaction began");
     }
 

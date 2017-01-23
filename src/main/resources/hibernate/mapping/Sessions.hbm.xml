@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+  <class table="sessions" lazy="false" name="domain.Sessions">
+    <id column="session_id" name="sessionId" type="java.lang.Integer">
+      <generator class="increment"/>
+    </id>
+    <property column="session_date" name="sessionTime" type="org.joda.time.contrib.hibernate.PersistentDateTime"/>
+    <many-to-one column="session_film" name="sessionFilm" class="domain.Film"/>
+    </class>
+</hibernate-mapping>

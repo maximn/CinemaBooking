@@ -9,7 +9,7 @@ import domain.Film;
 import domain.Sessions;
 
 /**
- * This interface represents a contract for a DAO for the Session model.
+ * This interface represents a contract for a DAO for the Sessions model.
  * @author Artem Meleshko
  * @version 1.01 2016
  *
