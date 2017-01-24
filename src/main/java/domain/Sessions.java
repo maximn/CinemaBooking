@@ -13,9 +13,9 @@ import org.joda.time.format.DateTimeFormatter;
  */
 
 public class Sessions {
-    private Integer sessionId;
-    private DateTime sessionTime;
-    private Film sessionFilm;
+    private Integer sessionsId;
+    private DateTime sessionsTime;
+    private Film sessionsFilm;
     
     /**
      * Constructs and initialized Session.
@@ -23,10 +23,10 @@ public class Sessions {
      * @param sessionFilmId is a film's id. 
      */
     
-    public Sessions(Integer sessionId, DateTime sessionTime, Film sessionFilm){
-        this.sessionId=sessionId;
-        this.sessionTime=sessionTime;
-        this.sessionFilm=sessionFilm;
+    public Sessions(Integer sessionsId, DateTime sessionsTime, Film sessionsFilm){
+        this.sessionsId=sessionsId;
+        this.sessionsTime=sessionsTime;
+        this.sessionsFilm=sessionsFilm;
     }
     
     /**
@@ -38,45 +38,45 @@ public class Sessions {
     }
     
     /**
-     * @return the sessionId
+     * @return the sessionsId
      */
     public Integer getSessionsId() {
-        return sessionId;
+        return sessionsId;
     }
 
     /**
-     * @param sessionId the sessionId to set
+     * @param sessionsId the sessionsId to set
      */
-    public void setSessionsId(Integer sessionId) {
-        this.sessionId = sessionId;
+    public void setSessionsId(Integer sessionsId) {
+        this.sessionsId = sessionsId;
     }
 
     /**
-     * @return the sessionTime
+     * @return the sessionsTime
      */
     public DateTime getSessionsTime() {
-        return sessionTime;
+        return sessionsTime;
     }
 
     /**
-     * @param sessionTime the sessionTime to set
+     * @param sessionsTime the sessionsTime to set
      */
-    public void setSessionsTime(DateTime sessionTime) {
-        this.sessionTime = sessionTime;
+    public void setSessionsTime(DateTime sessionsTime) {
+        this.sessionsTime = sessionsTime;
     }
 
     /**
-     * @return the sessionFilm
+     * @return the sessionsFilm
      */
     public Film getSessionsFilm() {
-        return sessionFilm;
+        return sessionsFilm;
     }
 
     /**
-     * @param sessionFilm the sessionFilm to set
+     * @param sessionsFilm the sessionsFilm to set
      */
-    public void setSessionsFilm(Film sessionFilm) {
-        this.sessionFilm = sessionFilm;
+    public void setsessionsFilm(Film sessionsFilm) {
+        this.sessionsFilm = sessionsFilm;
     }
 
     /* (non-Javadoc)
@@ -85,7 +85,7 @@ public class Sessions {
     @Override
     public String toString() {
         DateTimeFormatter fmt = DateTimeFormat.forPattern("yyyy-MM-dd hh:mm:ss");
-        return "Session [sessionId=" + sessionId + "sessionTime=" + fmt.print(sessionTime) + ", sessionFilm=" + sessionFilm + "]";
+        return "Sessions [sessionsId=" + sessionsId + "sessionsTime=" + fmt.print(sessionsTime) + ", sessionsFilm=" + sessionsFilm + "]";
     }
 
     /* (non-Javadoc)
@@ -95,9 +95,9 @@ public class Sessions {
     public int hashCode() {
         final int prime = 37;
         int result = 17;
-        result = prime * result + ((sessionId == null) ? 0 : sessionId.hashCode());
-        result = prime * result + ((sessionTime == null) ? 0 : sessionTime.hashCode());
-        result = prime * result + ((sessionFilm == null) ? 0 : sessionFilm.hashCode());
+        result = prime * result + ((sessionsId == null) ? 0 : sessionsId.hashCode());
+        result = prime * result + ((sessionsTime == null) ? 0 : sessionsTime.hashCode());
+        result = prime * result + ((sessionsFilm == null) ? 0 : sessionsFilm.hashCode());
         return result;
     }
 
@@ -111,7 +111,7 @@ public class Sessions {
         if (!(obj instanceof Sessions))
             return false;
         Sessions other = (Sessions) obj;
-        return (Objects.equals(sessionId, other.sessionId)) && (Objects.equals(sessionTime, other.sessionTime)) 
-                && (Objects.equals(sessionFilm, other.sessionFilm));
+        return (Objects.equals(sessionsId, other.sessionsId)) && (Objects.equals(sessionsTime, other.sessionsTime)) 
+                && (Objects.equals(sessionsFilm, other.sessionsFilm));
     }
 }

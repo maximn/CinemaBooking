@@ -1,6 +1,5 @@
 package domain;
 
-import java.util.LinkedHashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -16,7 +15,7 @@ public class Film {
     private Integer filmYear;
     private String filmLength;
     private String filmDescription;
-    private Set<Sessions> sessionsSet = new LinkedHashSet<Sessions>();
+    private Set<Sessions> sessionsSet;
     
     /**
      * Constructs and initializes Film.
@@ -27,7 +26,7 @@ public class Film {
      * @param filmDescription is a String notation with the film's description.
      */
     
-    Film(Integer filmId, String filmName, Integer filmYear, String filmLength, String filmDescription, Set sessionsSet){
+    public Film(Integer filmId, String filmName, Integer filmYear, String filmLength, String filmDescription, Set<Sessions> sessionsSet){
         this.filmId=filmId;
         this.filmName=filmName;
         this.filmYear=filmYear;

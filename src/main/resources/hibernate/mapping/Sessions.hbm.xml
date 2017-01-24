@@ -3,10 +3,10 @@
 
 <hibernate-mapping>
   <class table="sessions" lazy="false" name="domain.Sessions">
-    <id column="session_id" name="sessionId" type="java.lang.Integer">
+    <id column="sessions_id" name="sessionsId" type="java.lang.Integer">
       <generator class="increment"/>
     </id>
-    <property column="session_date" name="sessionTime" type="org.joda.time.contrib.hibernate.PersistentDateTime"/>
-    <many-to-one column="session_film" name="sessionFilm" class="domain.Film"/>
+    <property column="sessions_date" name="sessionsTime" type="org.jadira.usertype.dateandtime.joda.PersistentDateTime"/>
+    <many-to-one column="sessions_film" name="sessionsFilm" class="domain.Film"/>
     </class>
 </hibernate-mapping>

@@ -11,9 +11,9 @@
     <property column="film_length" name="filmLength" type="java.lang.String"/>
     <property column="film_description" name="filmDescription" type="java.lang.String"/>
     
-    <set name=«sessionsSet» table=«sessions»  lazy=«false»>
-      <key column=«film_id»/>
-      <one-to-many class=«domain.Sessions»/>
+    <set name="sessionsSet" table="sessions"  lazy="false">
+      <key column="film_id"/>
+      <one-to-many class="domain.Sessions"/>
     </set>
     
     
