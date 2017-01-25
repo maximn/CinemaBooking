@@ -1,5 +1,7 @@
 package demo;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -21,7 +23,7 @@ public class DemoHibernate {
         SessionFactory sf = new Configuration().configure().buildSessionFactory();
         System.out.println("CFG OK");
         Session session = sf.openSession();
-        //session.beginTransaction();
+        session.beginTransaction();
         
         
         
@@ -29,20 +31,22 @@ public class DemoHibernate {
         
         
         User user = new User((long) 1, "Modsno", "123432", "modsno@nomo.com", "user");
-        Film film = new Film(1, "Shadow",(Integer) 1991, "02:30", "Cool film", null);// new DateTime("yyyy-MM-dd hh:mm:ss"));
+        Film film = new Film((Integer)1, "Shadow",(Integer) 1991, "02:30", "Cool film", null);// new DateTime("yyyy-MM-dd hh:mm:ss"));
+        Film film1 = new Film((Integer)2, "Tork",(Integer) 2001, "02:00", "Biker's Film", set1);
         
         
-        Film filmFT = session.get(Film.class, 1);
+        //Film filmFT = session.get(Film.class, 1);
         
-        System.out.println(filmFT);
-        Sessions sessions1 = new Sessions(null, new DateTime(2015, 10, 11, 13, 45), film);
+        //System.out.println(filmFT);
+        Sessions sessions1 = new Sessions(null, new GregorianCalendar(2015, 9, 23, 9, 45), film1);
+        Sessions sessions2 = new Sessions(null, new GregorianCalendar(2015, 10, 22, 11, 45), film1);
+        System.out.println(sessions1);
         
         
-        
-        //session.save(sessions1);
+        session.save(sessions2);
         long id = 1;
-        //session.delete(film);
-        //session.getTransaction().commit();
+        //session.delete(sessions1);
+        session.getTransaction().commit();
         //long id = 1;
         String email = "modsno@nomo22.com";
         //user = session.get(User.class, id);

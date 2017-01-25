@@ -1,5 +1,7 @@
 package domain;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Objects;
 
 import org.joda.time.DateTime;
@@ -14,7 +16,7 @@ import org.joda.time.format.DateTimeFormatter;
 
 public class Sessions {
     private Integer sessionsId;
-    private DateTime sessionsTime;
+    private Calendar sessionsTime;
     private Film sessionsFilm;
     
     /**
@@ -23,7 +25,7 @@ public class Sessions {
      * @param sessionFilmId is a film's id. 
      */
     
-    public Sessions(Integer sessionsId, DateTime sessionsTime, Film sessionsFilm){
+    public Sessions(Integer sessionsId, Calendar sessionsTime, Film sessionsFilm){
         this.sessionsId=sessionsId;
         this.sessionsTime=sessionsTime;
         this.sessionsFilm=sessionsFilm;
@@ -54,14 +56,14 @@ public class Sessions {
     /**
      * @return the sessionsTime
      */
-    public DateTime getSessionsTime() {
+    public Calendar getSessionsTime() {
         return sessionsTime;
     }
 
     /**
      * @param sessionsTime the sessionsTime to set
      */
-    public void setSessionsTime(DateTime sessionsTime) {
+    public void setSessionsTime(Calendar sessionsTime) {
         this.sessionsTime = sessionsTime;
     }
 
@@ -84,8 +86,8 @@ public class Sessions {
      */
     @Override
     public String toString() {
-        DateTimeFormatter fmt = DateTimeFormat.forPattern("yyyy-MM-dd hh:mm:ss");
-        return "Sessions [sessionsId=" + sessionsId + "sessionsTime=" + fmt.print(sessionsTime) + ", sessionsFilm=" + sessionsFilm + "]";
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy MMM dd HH:mm");
+        return "Sessions [sessionsId=" + sessionsId + "sessionsTime=" + sdf.format(sessionsTime.getTime()) + ", sessionsFilm=" + sessionsFilm + "]";
     }
 
     /* (non-Javadoc)

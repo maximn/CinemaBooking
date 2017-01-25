@@ -6,7 +6,8 @@
     <id column="sessions_id" name="sessionsId" type="java.lang.Integer">
       <generator class="increment"/>
     </id>
-    <property column="sessions_date" name="sessionsTime" type="org.jadira.usertype.dateandtime.joda.PersistentDateTime"/>
-    <many-to-one column="sessions_film" name="sessionsFilm" class="domain.Film"/>
+<!--     org.jadira.usertype.dateandtime.joda.PersistentDateTime -->
+    <property column="sessions_date" name="sessionsTime" type="java.util.Calendar"/>
+    <many-to-one column="film_id" name="sessionsFilm" class="domain.Film"/>
     </class>
 </hibernate-mapping>
