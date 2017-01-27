@@ -2,12 +2,12 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
 
 <hibernate-mapping>
-  <class table="sessions" lazy="false" name="domain.Sessions">
+  <class table="sessions"  name="domain.Sessions"> <!-- lazy="false"-->
     <id column="sessions_id" name="sessionsId" type="java.lang.Integer">
-      <generator class="increment"/>
+      <generator class="native"/>
     </id>
 <!--     org.jadira.usertype.dateandtime.joda.PersistentDateTime -->
     <property column="sessions_date" name="sessionsTime" type="java.util.Calendar"/>
-    <many-to-one column="film_id" name="sessionsFilm" class="domain.Film"/>
+    <many-to-one column="film_id" name="sessionsFilm" class="domain.Film" not-null="true" insert="true" /> <!-- cascade="all"-->
     </class>
 </hibernate-mapping>

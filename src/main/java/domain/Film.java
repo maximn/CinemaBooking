@@ -39,9 +39,7 @@ public class Film {
      * Constructs and initialized Film object with the empty fields.
      */
     
-    public Film(){
-        this(null, null, null, null, null, null);
-    }
+    public Film(){}
         
     /* (non-Javadoc)
      * @see java.lang.Object#hashCode()

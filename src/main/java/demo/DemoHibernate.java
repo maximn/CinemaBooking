@@ -40,16 +40,20 @@ public class DemoHibernate {
         //System.out.println(filmFT);
         Sessions sessions1 = new Sessions(null, new GregorianCalendar(2015, 9, 23, 9, 45), film1);
         Sessions sessions2 = new Sessions(null, new GregorianCalendar(2015, 10, 22, 11, 45), film1);
+        Sessions sessions3 = new Sessions(null, new GregorianCalendar(2015, 10, 23, 11, 45), film);
         System.out.println(sessions1);
         
         
-        session.save(sessions2);
+//        session.save(sessions3);
+//        session.getTransaction().commit();
+        
         long id = 1;
+        Integer id1 = 1;
         //session.delete(sessions1);
-        session.getTransaction().commit();
-        //long id = 1;
         String email = "modsno@nomo22.com";
-        //user = session.get(User.class, id);
+       // User user1 = session.get(User.class, id);
+        //Sessions sessions3 =(Sessions) session.get(Sessions.class, id1);
+        Film film3 =(Film) session.get(Film.class, id1);
 //        String hql = "FROM User E WHERE E.userEmail = :user_email";
 //        Query query = session.createQuery(hql);
 //        query.setParameter("user_email",email);
@@ -57,9 +61,11 @@ public class DemoHibernate {
 //        User user1 = (User) session.createQuery("FROM User E WHERE E.userEmail = :user_email")
 //                .setString("user_email", email)
 //                .uniqueResult();
-                
+        //System.out.println(sessions3);
+        System.out.println(film3);        
         session.close();
-        System.out.println(user);
+        sf.close();
+        
         //System.out.println(user1);
         System.out.println("Transaction began");
     }

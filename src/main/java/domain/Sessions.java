@@ -35,9 +35,7 @@ public class Sessions {
      * Constructs and initialized Session object with the empty fields.
      */
     
-    public Sessions(){
-        this(null, null, null);
-    }
+    public Sessions(){}
     
     /**
      * @return the sessionsId
