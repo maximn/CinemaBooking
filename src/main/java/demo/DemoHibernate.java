@@ -31,7 +31,7 @@ public class DemoHibernate {
         
         
         User user = new User((long) 1, "Modsno", "123432", "modsno@nomo.com", "user");
-        Film film = new Film((Integer)1, "Shadow",(Integer) 1991, "02:30", "Cool film", null);// new DateTime("yyyy-MM-dd hh:mm:ss"));
+        Film film = new Film(null, "Shadow",(Integer) 1991, "02:30", "Cool film", null);// new DateTime("yyyy-MM-dd hh:mm:ss"));
         Film film1 = new Film((Integer)2, "Tork",(Integer) 2001, "02:00", "Biker's Film", set1);
         
         
@@ -53,11 +53,19 @@ public class DemoHibernate {
         String email = "modsno@nomo22.com";
        // User user1 = session.get(User.class, id);
         //Sessions sessions3 =(Sessions) session.get(Sessions.class, id1);
+        session.save(film);
+        session.getTransaction().commit();
+               
         Film film3 =(Film) session.get(Film.class, id1);
+        
         sessions1.setSessionsFilm(film3);
+        
+//        session.save(sessions1);
+//        session.getTransaction().commit();
+        
         film3.getSessionsSet().add(sessions1);
-      session.update(film3);
-      session.getTransaction().commit();
+        session.update(film3);
+        session.getTransaction().commit();
       
 //        
 //        set1 = film3.getSessionsSet();
@@ -75,7 +83,7 @@ public class DemoHibernate {
 //                .setString("user_email", email)
 //                .uniqueResult();
         //System.out.println(sessions3);
-        System.out.println(film3);        
+       // System.out.println(film3);        
         session.close();
         sf.close();
         

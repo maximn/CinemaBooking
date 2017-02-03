@@ -4,7 +4,7 @@
 <hibernate-mapping>
   <class table="sessions"  
          name="domain.Sessions"> <!-- lazy="false"-->
-    <id column="sessions_id" 
+    <id column="id" 
         name="sessionsId" 
         type="java.lang.Integer">
       <generator class="native"/>
@@ -15,8 +15,8 @@
               type="java.util.Calendar"/>
     <many-to-one column="film_id" 
                  name="sessionsFilm" 
-                 class="domain.Film" 
+                 class="domain.Film"
                  not-null="true" 
-                 insert="true" /> <!-- cascade="all"-->
+                 insert="true" /> <!-- cascade="all"--> <!--not-null="true"  -->
     </class>
 </hibernate-mapping>
