@@ -38,9 +38,9 @@ public class DemoHibernate {
         //Film filmFT = session.get(Film.class, 1);
         
         //System.out.println(filmFT);
-        Sessions sessions1 = new Sessions(null, new GregorianCalendar(2015, 9, 23, 9, 45), null);
-        Sessions sessions2 = new Sessions(null, new GregorianCalendar(2015, 10, 22, 11, 45), film1);
-        Sessions sessions3 = new Sessions(null, new GregorianCalendar(2015, 10, 23, 11, 45), film);
+        Sessions sessions1 = new Sessions(null, new GregorianCalendar(2015, 10, 22, 11, 45), null);
+      //  Sessions sessions2 = new Sessions(null, new GregorianCalendar(2015, 10, 22, 11, 45), film1);
+      //  Sessions sessions3 = new Sessions(null, new GregorianCalendar(2015, 10, 23, 11, 45), film);
         System.out.println(sessions1);
         
         
@@ -60,12 +60,12 @@ public class DemoHibernate {
         
         sessions1.setSessionsFilm(film3);
         
-//        session.save(sessions1);
-//        session.getTransaction().commit();
-        
-        film3.getSessionsSet().add(sessions1);
-        session.update(film3);
+        session.save(sessions1);
         session.getTransaction().commit();
+        
+      //  film3.getSessionsSet().add(sessions1);
+      //  session.update(film3);
+      //  session.getTransaction().commit();
       
 //        
 //        set1 = film3.getSessionsSet();

@@ -85,8 +85,9 @@ public class Sessions {
     @Override
     public String toString() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy MMM dd HH:mm");
-        return "Sessions [sessionsId=" + sessionsId + "sessionsTime=" + sdf.format(sessionsTime.getTime()) + ", sessionsFilm=" + sessionsFilm + "]";
+        return "Sessions [sessionsId=" + sessionsId + "sessionsTime=" + sessionsTime + ", sessionsFilm=" + sessionsFilm + "]";
     }
+    //sdf.format(sessionsTime.getTime())
 
     /* (non-Javadoc)
      * @see java.lang.Object#hashCode()

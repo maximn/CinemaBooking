@@ -12,7 +12,7 @@
 <!--     org.jadira.usertype.dateandtime.joda.PersistentDateTime -->
     <property column="sessions_date" 
               name="sessionsTime" 
-              type="java.util.Calendar"/>
+              type="java.util.Calendar"/> 
     <many-to-one column="film_id" 
                  name="sessionsFilm" 
                  class="domain.Film"
