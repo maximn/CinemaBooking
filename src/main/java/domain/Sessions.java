@@ -75,7 +75,7 @@ public class Sessions {
     /**
      * @param sessionsFilm the sessionsFilm to set
      */
-    public void setsessionsFilm(Film sessionsFilm) {
+    public void setSessionsFilm(Film sessionsFilm) {
         this.sessionsFilm = sessionsFilm;
     }
 

@@ -38,13 +38,13 @@ public class DemoHibernate {
         //Film filmFT = session.get(Film.class, 1);
         
         //System.out.println(filmFT);
-        Sessions sessions1 = new Sessions(null, new GregorianCalendar(2015, 9, 23, 9, 45), film1);
+        Sessions sessions1 = new Sessions(null, new GregorianCalendar(2015, 9, 23, 9, 45), null);
         Sessions sessions2 = new Sessions(null, new GregorianCalendar(2015, 10, 22, 11, 45), film1);
         Sessions sessions3 = new Sessions(null, new GregorianCalendar(2015, 10, 23, 11, 45), film);
         System.out.println(sessions1);
         
         
-//        session.save(sessions3);
+//        session.save(film);
 //        session.getTransaction().commit();
         
         long id = 1;
@@ -54,6 +54,19 @@ public class DemoHibernate {
        // User user1 = session.get(User.class, id);
         //Sessions sessions3 =(Sessions) session.get(Sessions.class, id1);
         Film film3 =(Film) session.get(Film.class, id1);
+        sessions1.setSessionsFilm(film3);
+        film3.getSessionsSet().add(sessions1);
+      session.update(film3);
+      session.getTransaction().commit();
+      
+//        
+//        set1 = film3.getSessionsSet();
+//        for (Sessions s: set1){
+//            System.out.println(s);
+//            System.out.println("YA YA YA");
+//        }
+        
+        
 //        String hql = "FROM User E WHERE E.userEmail = :user_email";
 //        Query query = session.createQuery(hql);
 //        query.setParameter("user_email",email);

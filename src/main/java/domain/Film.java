@@ -98,6 +98,11 @@ public class Film {
         this.sessionsSet = sessionsSet;
     }
     
+    public void addNewSessionToSet(Sessions sessionNew){
+        sessionNew.setSessionsFilm(this);
+        sessionsSet.add(sessionNew);
+    }
+    
     /**
      * @return the filmId
      */
