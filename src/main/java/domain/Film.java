@@ -44,45 +44,45 @@ public class Film {
     /* (non-Javadoc)
      * @see java.lang.Object#hashCode()
      */
-    @Override
-    public int hashCode() {
-        final int prime = 37;
-        int result = 17;
-        result = prime * result + ((filmId == null) ? 0 : filmId.hashCode());
-        result = prime * result + ((filmDescription == null) ? 0 : filmDescription.hashCode());
-        result = prime * result + ((filmLength == null) ? 0 : filmLength.hashCode());
-        result = prime * result + ((filmName == null) ? 0 : filmName.hashCode());
-        result = prime * result + ((filmYear == null) ? 0 : filmYear.hashCode());
-        result = prime * result + ((sessionsSet == null) ? 0 : sessionsSet.hashCode());
-        return result;
-    }
+//    @Override
+//    public int hashCode() {
+//        final int prime = 37;
+//        int result = 17;
+//        result = prime * result + ((filmId == null) ? 0 : filmId.hashCode());
+//        result = prime * result + ((filmDescription == null) ? 0 : filmDescription.hashCode());
+//        result = prime * result + ((filmLength == null) ? 0 : filmLength.hashCode());
+//        result = prime * result + ((filmName == null) ? 0 : filmName.hashCode());
+//        result = prime * result + ((filmYear == null) ? 0 : filmYear.hashCode());
+//        result = prime * result + ((sessionsSet == null) ? 0 : sessionsSet.hashCode());
+//        return result;
+//    }
+//
+//
+//    /* (non-Javadoc)
+//     * @see java.lang.Object#equals(java.lang.Object)
+//     */
+//    @Override
+//    public boolean equals(Object s) {
+//        if (s == this)
+//            return true;
+//        if (!(s instanceof Film))
+//            return false;
+//        Film other = (Film) s;
+//        return (Objects.equals(filmId, other.filmId)) && (Objects.equals(filmName, other.filmName)) && (Objects.equals(filmYear, other.filmYear)) 
+//                && (Objects.equals(filmLength, other.filmLength)) && (Objects.equals(filmDescription, other.filmDescription))
+//                && (Objects.equals(sessionsSet, other.sessionsSet));
+//        
+//    }
 
 
-    /* (non-Javadoc)
-     * @see java.lang.Object#equals(java.lang.Object)
-     */
-    @Override
-    public boolean equals(Object s) {
-        if (s == this)
-            return true;
-        if (!(s instanceof Film))
-            return false;
-        Film other = (Film) s;
-        return (Objects.equals(filmId, other.filmId)) && (Objects.equals(filmName, other.filmName)) && (Objects.equals(filmYear, other.filmYear)) 
-                && (Objects.equals(filmLength, other.filmLength)) && (Objects.equals(filmDescription, other.filmDescription))
-                && (Objects.equals(sessionsSet, other.sessionsSet));
-        
-    }
-
-
-    /**
-     * Returns a string representation of the object Films.
-     */
-    @Override
-    public String toString() {
-        return "Film [filmId="+ filmId +", filmName=" + filmName + ", filmYear=" + filmYear + ", filmLength=" + filmLength
-                + ", filmDescription=" + filmDescription + ", sessionsSet" + sessionsSet + "]";
-    }
+//    /**
+//     * Returns a string representation of the object Films.
+//     */
+//    @Override
+//    public String toString() {
+//        return "Film [filmId="+ filmId +", filmName=" + filmName + ", filmYear=" + filmYear + ", filmLength=" + filmLength
+//                + ", filmDescription=" + filmDescription + ", sessionsSet" + sessionsSet.toString() + "]";
+//    }
 
     /**
      * @return the sessionIdSet

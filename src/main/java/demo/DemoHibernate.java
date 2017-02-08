@@ -1,5 +1,6 @@
 package demo;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
@@ -7,6 +8,7 @@ import java.util.Set;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.dialect.identity.SybaseAnywhereIdentityColumnSupport;
 import org.hibernate.query.Query;
@@ -23,7 +25,7 @@ public class DemoHibernate {
         SessionFactory sf = new Configuration().configure().buildSessionFactory();
         System.out.println("CFG OK");
         Session session = sf.openSession();
-        session.beginTransaction();
+        Transaction transaction = session.beginTransaction();
         
         
         
@@ -38,10 +40,34 @@ public class DemoHibernate {
         //Film filmFT = session.get(Film.class, 1);
         
         //System.out.println(filmFT);
-        Sessions sessions1 = new Sessions(null, new GregorianCalendar(2015, 10, 22, 11, 45), null);
+        Sessions sessions1 = new Sessions();
+        Calendar sessionTime1 = new GregorianCalendar(2015, 10, 22, 11, 45);
+        sessions1.setSessionsTime(sessionTime1);
+        
+        Sessions sessions2 = new Sessions();
+        Calendar sessionTime2 = new GregorianCalendar(2016, 11, 24, 9, 45);
+        sessions2.setSessionsTime(sessionTime2);
+        
+        Set<Sessions> sessionsSet = new HashSet<Sessions>();
+        sessionsSet.add(sessions1);
+        sessionsSet.add(sessions2);
+        
+        Film filmNew = new Film();
+        filmNew.setFilmName("Shadow");
+        filmNew.setFilmYear((Integer)1992);
+        filmNew.setFilmLength("02:20");
+        filmNew.setFilmDescription("Cool film");
+        filmNew.setSessionsSet(sessionsSet);
+        
+        sessions1.setSessionsFilm(filmNew);
+        sessions2.setSessionsFilm(filmNew);
+        
       //  Sessions sessions2 = new Sessions(null, new GregorianCalendar(2015, 10, 22, 11, 45), film1);
       //  Sessions sessions3 = new Sessions(null, new GregorianCalendar(2015, 10, 23, 11, 45), film);
-        System.out.println(sessions1);
+//        System.out.println(filmNew);
+        System.out.println("------------");
+        System.out.println("_____________");
+ //       System.out.println(sessions1);
         
         
 //        session.save(film);
@@ -53,15 +79,16 @@ public class DemoHibernate {
         String email = "modsno@nomo22.com";
        // User user1 = session.get(User.class, id);
         //Sessions sessions3 =(Sessions) session.get(Sessions.class, id1);
-        session.save(film);
-        session.getTransaction().commit();
-               
-        Film film3 =(Film) session.get(Film.class, id1);
         
-        sessions1.setSessionsFilm(film3);
-        
-        session.save(sessions1);
-        session.getTransaction().commit();
+//   -----     session.save(film);
+//        session.getTransaction().commit();
+//               
+//        Film film3 =(Film) session.get(Film.class, id1);
+//        
+//        sessions1.setSessionsFilm(film3);
+//        
+//        session.save(sessions1);
+//   /-----     session.getTransaction().commit();
         
       //  film3.getSessionsSet().add(sessions1);
       //  session.update(film3);
@@ -83,9 +110,23 @@ public class DemoHibernate {
 //                .setString("user_email", email)
 //                .uniqueResult();
         //System.out.println(sessions3);
-       // System.out.println(film3);        
+       // System.out.println(film3);   
+        session.save(filmNew);
+//        session.save(sessions1);
+//        session.save(sessions2);
+        transaction.commit();
+        Film filmDB = session.get(Film.class, 1);
         session.close();
         sf.close();
+        
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy MMM dd HH:mm");
+        GregorianCalendar cal = new GregorianCalendar();
+        Set<Sessions> set = filmDB.getSessionsSet();
+        for(Sessions s: filmDB.getSessionsSet()){
+            cal = (GregorianCalendar) s.getSessionsTime();
+            //sdf.format(cal);
+            System.out.println("Film: " + s.getSessionsFilm().getFilmName() + "   DateTime" + sdf.format(s.getSessionsTime().getTime()));
+        }
         
         //System.out.println(user1);
         System.out.println("Transaction began");

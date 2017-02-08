@@ -13,10 +13,9 @@
     <property column="sessions_date" 
               name="sessionsTime" 
               type="java.util.Calendar"/> 
+<!--               "java.util.Calendar" -->
     <many-to-one column="film_id" 
                  name="sessionsFilm" 
-                 class="domain.Film"
-                 not-null="true" 
-                 insert="true" /> <!-- cascade="all"--> <!--not-null="true"  -->
+                 class="domain.Film"/> <!-- cascade="all"--> <!--not-null="true" insert="true" -->
     </class>
 </hibernate-mapping>
