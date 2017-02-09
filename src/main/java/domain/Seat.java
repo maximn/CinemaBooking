@@ -14,7 +14,7 @@ public class Seat {
     private Integer seatRow;
     private String seatHall;
     private String seatStatus;
-    private Set<Sessions> sessions = new LinkedHashSet<Sessions>();
+    private Set<Sessions> sessions;
         
     /**
      * Constructs and initialized Seat.
@@ -22,7 +22,7 @@ public class Seat {
      * @param seatStatus is a seat's status (reserved, booked, free);
      */
     
-    private Seat(Integer seatId, Integer seatNum, Integer seatRow, String seatHall, String seatStatus, Set sessions){
+    public Seat(Integer seatId, Integer seatNum, Integer seatRow, String seatHall, String seatStatus, Set<Sessions> sessions){
         this.seatId=seatId;
         this.seatNum=seatNum;
         this.seatRow=seatRow;
@@ -34,9 +34,7 @@ public class Seat {
     /**
      * Constructs and initialized Seat object with the empty fields.
      */
-    public Seat(){
-        this(null, null, null, null, null, null);
-    }
+    public Seat(){}
    
     /**
      * @return the seatId
@@ -123,14 +121,14 @@ public class Seat {
     }
 
     
-    /* (non-Javadoc)
-     * @see java.lang.Object#toString()
-     */
-    @Override
-    public String toString() {
-        return "Seat [seatId=" + seatId + ", seatNum=" + seatNum + ", seatRow=" + seatRow + ", seatHall=" + seatHall
-                + ", sessions=" + sessions.toString() + "]";
-    }
+//    /* (non-Javadoc)
+//     * @see java.lang.Object#toString()
+//     */
+//    @Override
+//    public String toString() {
+//        return "Seat [seatId=" + seatId + ", seatNum=" + seatNum + ", seatRow=" + seatRow + ", seatHall=" + seatHall
+//                + ", sessions=" + sessions.toString() + "]";
+//    }
 
    
 
@@ -145,7 +143,7 @@ public class Seat {
         result = prime * result + ((seatId == null) ? 0 : seatId.hashCode());
         result = prime * result + ((seatNum == null) ? 0 : seatNum.hashCode());
         result = prime * result + ((seatRow == null) ? 0 : seatRow.hashCode());
-        result = prime * result + ((sessions == null) ? 0 : sessions.hashCode());
+//        result = prime * result + ((sessions == null) ? 0 : sessions.hashCode());
         return result;
     }
 

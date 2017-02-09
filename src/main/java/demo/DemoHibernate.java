@@ -16,6 +16,7 @@ import org.joda.time.DateTime;
 
 import domain.Sessions;
 import domain.Film;
+import domain.Seat;
 import domain.User;
 
 public class DemoHibernate {
@@ -62,6 +63,32 @@ public class DemoHibernate {
         sessions1.setSessionsFilm(filmNew);
         sessions2.setSessionsFilm(filmNew);
         
+        Set<Sessions> sessionsSet1 = new HashSet<Sessions>();
+        Set<Sessions> sessionsSet2 = new HashSet<Sessions>();
+        sessionsSet1.add(sessions1);
+        sessionsSet1.add(sessions2);
+        sessionsSet2.add(sessions2);
+        Seat seat1 = new Seat();
+        seat1.setSeatNum(22);
+        seat1.setSeatRow(10);
+        seat1.setSeatHall("Yellow Hall");
+        seat1.setSeatStatus("reserved");
+        seat1.setSessions(sessionsSet1);
+        
+        Seat seat2 = new Seat();
+        seat2.setSeatNum(23);
+        seat2.setSeatRow(10);
+        seat2.setSeatHall("Brown Hall");
+        seat2.setSeatStatus("reserved");
+        seat2.setSessions(sessionsSet2);
+        
+        Seat seat3 = new Seat();
+        seat3.setSeatNum(24);
+        seat3.setSeatRow(15);
+        seat3.setSeatHall("Yellow Hall");
+        seat3.setSeatStatus("reserved");
+        seat3.setSessions(sessionsSet1);
+        
       //  Sessions sessions2 = new Sessions(null, new GregorianCalendar(2015, 10, 22, 11, 45), film1);
       //  Sessions sessions3 = new Sessions(null, new GregorianCalendar(2015, 10, 23, 11, 45), film);
 //        System.out.println(filmNew);
@@ -80,27 +107,7 @@ public class DemoHibernate {
        // User user1 = session.get(User.class, id);
         //Sessions sessions3 =(Sessions) session.get(Sessions.class, id1);
         
-//   -----     session.save(film);
-//        session.getTransaction().commit();
-//               
-//        Film film3 =(Film) session.get(Film.class, id1);
-//        
-//        sessions1.setSessionsFilm(film3);
-//        
-//        session.save(sessions1);
-//   /-----     session.getTransaction().commit();
-        
-      //  film3.getSessionsSet().add(sessions1);
-      //  session.update(film3);
-      //  session.getTransaction().commit();
-      
-//        
-//        set1 = film3.getSessionsSet();
-//        for (Sessions s: set1){
-//            System.out.println(s);
-//            System.out.println("YA YA YA");
-//        }
-        
+
         
 //        String hql = "FROM User E WHERE E.userEmail = :user_email";
 //        Query query = session.createQuery(hql);
@@ -112,10 +119,14 @@ public class DemoHibernate {
         //System.out.println(sessions3);
        // System.out.println(film3);   
         session.save(filmNew);
+        session.save(seat1);
+        session.save(seat2);
+        session.save(seat3);
 //        session.save(sessions1);
 //        session.save(sessions2);
         transaction.commit();
         Film filmDB = session.get(Film.class, 1);
+        Seat seatDB = session.get(Seat.class, 1);
         session.close();
         sf.close();
         
@@ -123,11 +134,12 @@ public class DemoHibernate {
         GregorianCalendar cal = new GregorianCalendar();
         Set<Sessions> set = filmDB.getSessionsSet();
         for(Sessions s: filmDB.getSessionsSet()){
-            cal = (GregorianCalendar) s.getSessionsTime();
-            //sdf.format(cal);
             System.out.println("Film: " + s.getSessionsFilm().getFilmName() + "   DateTime" + sdf.format(s.getSessionsTime().getTime()));
         }
         
+        for(Sessions s: seatDB.getSessions()){
+            System.out.println("Sessions Film name of the seat:  " + s.getSessionsFilm().getFilmName() + "  Session's Time: " + sdf.format(s.getSessionsTime().getTime()));
+        }
         //System.out.println(user1);
         System.out.println("Transaction began");
     }
