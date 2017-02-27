@@ -4,7 +4,7 @@
 <hibernate-mapping>
 
   <class table="seats"  name="domain.Seat"> <!-- lazy="false" -->
-    <id column="seat_id" name="seatId" type="java.lang.Integer">
+    <id column="seat_id" name="seatId" type="java.lang.Integer" >
     <generator class="native"/> <!-- "increment" -->
     </id>
     <property column="seat_number" name="seatNum" type="java.lang.Integer"/>
@@ -15,9 +15,10 @@
     <set name="sessions" 
          table="sessions_seats"
          lazy="true"
-         cascade="save-update"> <!-- cascade="all""save-update" lazy="false" inverse="true"-->
-      <key column="seat_id"/>
+         inverse="true"> <!-- cascade="all""save-update" lazy="false" inverse="true"-->
+      <key column="seat_id" />   <!--   not-null="true"-->
       <many-to-many class="domain.Sessions" column="session_id"/>
+<!--   column="session_id"    "session_id" -->
     </set>
     
     

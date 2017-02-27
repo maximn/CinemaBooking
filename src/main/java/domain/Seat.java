@@ -9,12 +9,12 @@ import java.util.*;
  */
 
 public class Seat {
-    private Integer seatId;
+    private Integer seatId = null;
     private Integer seatNum;
     private Integer seatRow;
     private String seatHall;
     private String seatStatus;
-    private Set<Sessions> sessions;
+    private Set<Sessions> sessions = new HashSet<Sessions>();
         
     /**
      * Constructs and initialized Seat.
@@ -118,6 +118,10 @@ public class Seat {
      */
     public void setSessions(Set<Sessions> sessions) {
         this.sessions = sessions;
+    }
+    
+    public void addSessions(Sessions sessions) {
+        this.sessions.add(sessions);
     }
 
     

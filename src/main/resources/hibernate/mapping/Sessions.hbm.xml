@@ -4,18 +4,26 @@
 <hibernate-mapping>
   <class table="sessions"  
          name="domain.Sessions"> <!-- lazy="false"-->
-    <id column="id" 
+    <id column="sessions_id" 
         name="sessionsId" 
-        type="java.lang.Integer">
+        type="java.lang.Integer" >
       <generator class="native"/>
     </id>
 <!--     org.jadira.usertype.dateandtime.joda.PersistentDateTime -->
     <property column="sessions_date" 
               name="sessionsTime" 
               type="java.util.Calendar"/> 
-<!--               "java.util.Calendar" -->
-    <many-to-one column="film_id" 
+      <many-to-one column="film_id" 
                  name="sessionsFilm" 
                  class="domain.Film"/> <!-- cascade="all"--> <!--not-null="true" insert="true" -->
+                 
+    <set name="sessionsSeats"
+         table="sessions_seats"
+         lazy="true"
+         cascade="save-update">
+       <key column="sessions_id" /> <!-- "sessions_id" not-null="false"-->
+       <many-to-many class="domain.Seat" column="seat_id"/>
+<!--        column="session_id"    -->
+    </set>
     </class>
 </hibernate-mapping>

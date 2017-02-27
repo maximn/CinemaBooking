@@ -18,9 +18,10 @@ import org.joda.time.format.DateTimeFormatter;
  */
 
 public class Sessions {
-    private Integer sessionsId;
+    private Integer sessionsId = null;
     private Calendar sessionsTime;
     private Film sessionsFilm;
+    private Set<Seat> sessionsSeats = new HashSet<Seat>();
     
     /**
      * Constructs and initialized Session.
@@ -28,10 +29,11 @@ public class Sessions {
      * @param sessionFilmId is a film's id. 
      */
     
-    public Sessions(Integer sessionsId, Calendar sessionsTime, Film sessionsFilm){
+    public Sessions(Integer sessionsId, Calendar sessionsTime, Film sessionsFilm, Set<Seat> sessionsSeats){
         this.sessionsId=sessionsId;
         this.sessionsTime=sessionsTime;
         this.sessionsFilm=sessionsFilm;
+        this.sessionsSeats=sessionsSeats;
     }
     
     /**
@@ -80,6 +82,24 @@ public class Sessions {
      */
     public void setSessionsFilm(Film sessionsFilm) {
         this.sessionsFilm = sessionsFilm;
+    }
+    
+    /**
+     * @return the sessionsSeats
+     */
+    public Set<Seat> getSessionsSeats() {
+        return sessionsSeats;
+    }
+
+    /**
+     * @param sessionsSeats the sessionsSeats to set
+     */
+    public void setSessionsSeats(Set<Seat> sessionsSeats) {
+        this.sessionsSeats = sessionsSeats;
+    }
+    
+    public void addSeat(Seat seat) {
+        this.sessionsSeats.add(seat);
     }
 
 //    /* (non-Javadoc)
