@@ -167,25 +167,39 @@ public class DemoHibernate {
 ////      
 //      session.saveOrUpdate(sess1);
 //      session.saveOrUpdate(sess2);
-      
-      Sessions sessions1 = new Sessions();
-    Calendar sessionTime1 = new GregorianCalendar(2014, 10, 22, 11, 45);
-    sessions1.setSessionsTime(sessionTime1);
-    
-    Seat seat = new Seat();
-    seat.setSeatNum(3);
-    seat.setSeatHall("Yellow Hall");
-    seat.setSeatRow(5);
-    seat.setSeatStatus("reserved");
-    seat.addSessions(sessions1);
-    
-    sessions1.addSeat(seat);
-    
-    Film filmBB = session.get(Film.class, 1);
-    
-    filmBB.getSessionsSet().add(sessions1);
-    
-    session.saveOrUpdate(filmBB);
+ 
+        
+        //--------------------------------------  
+//      Sessions sessions1 = new Sessions();
+//    Calendar sessionTime1 = new GregorianCalendar(2014, 10, 22, 11, 45);
+//    sessions1.setSessionsTime(sessionTime1);
+//    
+//    Seat seat = new Seat();
+//    seat.setSeatNum(3);
+//    seat.setSeatHall("Yellow Hall");
+//    seat.setSeatRow(5);
+//    seat.setSeatStatus("reserved");
+//    seat.addSessions(sessions1);
+//    
+//    sessions1.addSeat(seat);
+//    
+//    Film filmBB = session.get(Film.class, 1);
+//    
+//    filmBB.getSessionsSet().add(sessions1);
+//    
+//    session.saveOrUpdate(filmBB);
+//    session.saveOrUpdate(sessions1);
+//    session.saveOrUpdate(seat);
+        
+        Seat seat = session.get(Seat.class, 2);
+        Sessions sessions = session.get(Sessions.class, 2);
+        seat.addSessions(sessions);
+        sessions.addSeat(seat);
+        
+        
+        
+    //    session.saveOrUpdate(seat);
+        session.saveOrUpdate(sessions);
 //      
       session.getTransaction().commit();
   //---------------------------    

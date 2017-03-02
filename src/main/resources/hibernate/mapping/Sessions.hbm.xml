@@ -6,7 +6,7 @@
          name="domain.Sessions"> <!-- lazy="false"-->
     <id column="sessions_id" 
         name="sessionsId" 
-        type="java.lang.Integer" >
+        type="java.lang.Integer">
       <generator class="native"/>
     </id>
 <!--     org.jadira.usertype.dateandtime.joda.PersistentDateTime -->
@@ -20,7 +20,7 @@
     <set name="sessionsSeats"
          table="sessions_seats"
          lazy="true"
-         cascade="save-update">
+         inverse="true">
        <key column="sessions_id" /> <!-- "sessions_id" not-null="false"-->
        <many-to-many class="domain.Seat" column="seat_id"/>
 <!--        column="session_id"    -->
