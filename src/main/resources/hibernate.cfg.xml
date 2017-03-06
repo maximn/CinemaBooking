@@ -36,6 +36,7 @@
      <mapping resource="hibernate/mapping/Film.hbm.xml"/>
 <!--      <mapping class="domain.Film" /> -->
      <mapping resource="hibernate/mapping/Seat.hbm.xml"/>
+     <mapping resource="hibernate/mapping/Order.hbm.xml"/>
 
  
 </session-factory>

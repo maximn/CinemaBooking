@@ -15,7 +15,7 @@
     <set name="sessions" 
          table="sessions_seats"
          lazy="true"
-         cascade="save-update"> <!-- cascade="all""save-update" lazy="false" inverse="true"-->
+         inverse="true"> <!-- cascade="all""save-update" lazy="false" inverse="true"-->
       <key column="seat_id" />   <!--   not-null="true"-->
       <many-to-many class="domain.Sessions" column="sessions_id"/>
 <!--   column="session_id"    "session_id" -->

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+  <class table="orders"  
+         name="domain.Order"> 
+    <id column="order_id" 
+        name="orderId" 
+        type="java.lang.Integer">
+      <generator class="native"/>
+    </id>
+
+    <many-to-one column="user_id" 
+                 name="user" 
+                 class="domain.User"/>          
+                 
+    <many-to-one column="seat_id" 
+                 name="seatNumber" 
+                 class="domain.Seat"/>
+                 
+    <many-to-one column="film_id" 
+                 name="film" 
+                 class="domain.Film"/>
+                 
+     <many-to-one column="sessions_id" 
+                 name="sessionOrder" 
+                 class="domain.Sessions"/>
+                 
+    </class>
+</hibernate-mapping>

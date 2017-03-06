@@ -190,16 +190,23 @@ public class DemoHibernate {
 //    session.saveOrUpdate(filmBB);
 //    session.saveOrUpdate(sessions1);
 //    session.saveOrUpdate(seat);
+      
+        //------successful Seat Sessions insert----
+//        Seat seat = session.get(Seat.class, 3);
+//        Sessions sessions = session.get(Sessions.class, 1);
+//        seat.addSessions(sessions);
+//        sessions.addSeat(seat);
         
-        Seat seat = session.get(Seat.class, 2);
-        Sessions sessions = session.get(Sessions.class, 2);
-        seat.addSessions(sessions);
-        sessions.addSeat(seat);
+        User user1 = new User();
+        user1.setUserName("Garry");
+        user1.setUserPassword("1234");
+        user1.setUserEmail("garry_gefferson1959@garry.com");
+        user1.setUserRole("user");
         
         
         
     //    session.saveOrUpdate(seat);
-        session.saveOrUpdate(sessions);
+        session.saveOrUpdate(user1);
 //      
       session.getTransaction().commit();
   //---------------------------    

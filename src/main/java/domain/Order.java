@@ -13,7 +13,7 @@ public class Order {
     private User user;
     private Seat seatNumber;
     private Film film;
-    private Sessions session;
+    private Sessions sessionOrder;
    
     /**
      * Constructs and initializes Order. 
@@ -24,46 +24,41 @@ public class Order {
      * @param sessionId is a unique session's id.
      */
     
-    public Order(Integer orderNumber, User user, Seat seatNumber, Film film, Sessions session) {
-        this.orderId = orderNumber;
+    public Order(Integer orderId, User user, Seat seatNumber, Film film, Sessions sessionOrder) {
+        this.orderId = orderId;
         this.user = user;
         this.seatNumber = seatNumber;
         this.film = film;
-        this.session=session;
+        this.sessionOrder=sessionOrder;
     }
     
-    /**
-     * Constructs and initializes Order with the empty fields.
-     */
-    public Order(){
-        this(null, null, null, null, null);
-    }
-
+    public Order(){}
+    
     /**
      * @return the orderNumber
      */
-    public Integer getOrderNumber() {
+    public Integer getOrderId() {
         return orderId;
     }
 
     /**
      * @param orderNumber is a unique number of this order to set.
      */
-    public void setOrderNumber(Integer orderNumber) {
-        this.orderId = orderNumber;
+    public void setOrderId(Integer orderId) {
+        this.orderId = orderId;
     }
 
     /**
      * @return the userId
      */
-    public User getUserId() {
+    public User getUser() {
         return user;
     }
 
     /**
      * @param userId is a unique user's Id in the database to set.
      */
-    public void setUserId(User user) {
+    public void setUser(User user) {
         this.user = user;
     }
 
@@ -84,29 +79,29 @@ public class Order {
     /**
      * @return the filmId
      */
-    public Film getFilmId() {
+    public Film getFilm() {
         return film;
     }
 
     /**
      * @param filmId is a unique Id of the film to set.
      */
-    public void setFilmId(Film film) {
+    public void setFilm(Film film) {
         this.film = film;
     }
 
     /**
      * @return the sessionId
      */
-    public Sessions getSessionId() {
-        return session;
+    public Sessions getSessionOrder() {
+        return sessionOrder;
     }
 
     /**
      * @param sessionId the sessionId to set
      */
-    public void setSessionId(Sessions session) {
-        this.session = session;
+    public void setSessionOrder(Sessions sessionOrder) {
+        this.sessionOrder = sessionOrder;
     }
 
     /* (non-Javadoc)
@@ -115,7 +110,7 @@ public class Order {
     @Override
     public String toString() {
         return "Order [orderNumber=" + orderId + ", user=" + user + ", seatNumber=" + seatNumber + ", film="
-                + film + ", session=" + session + "]";
+                + film + ", session=" + sessionOrder + "]";
     }
 
     /* (non-Javadoc)
@@ -129,7 +124,7 @@ public class Order {
         result = prime * result + ((orderId == null) ? 0 : orderId.hashCode());
         result = prime * result + ((seatNumber == null) ? 0 : seatNumber.hashCode());
         result = prime * result + ((user == null) ? 0 : user.hashCode());
-        result = prime * result + ((session == null) ? 0 : session.hashCode());
+        result = prime * result + ((sessionOrder == null) ? 0 : sessionOrder.hashCode());
         return result;
     }
 
@@ -145,7 +140,7 @@ public class Order {
         Order other = (Order) obj;
         return (Objects.equals(orderId, other.orderId)) && (Objects.equals(film, other.film)) 
                 && (Objects.equals(seatNumber, other.seatNumber)) && (Objects.equals(user, other.user)) 
-                && (Objects.equals(session, other.session));
+                && (Objects.equals(sessionOrder, other.sessionOrder));
     }
     
     
