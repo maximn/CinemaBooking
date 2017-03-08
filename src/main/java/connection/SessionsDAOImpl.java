@@ -39,10 +39,11 @@ public class SessionsDAOImpl extends AbstractDAO implements SessionsDAO {
         return null;
     }
 
+    @SuppressWarnings({ "deprecation", "unchecked" })
     @Override
     public List<Sessions> list() throws RuntimeException {
         Session session = null;
-        List<Sessions> listOfSessions = new ArrayList<>();
+        List<Sessions> listOfSessions = new ArrayList<Sessions>();
         try {
             session = getSessionFactory().openSession();
             session.beginTransaction();

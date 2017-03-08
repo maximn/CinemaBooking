@@ -15,6 +15,7 @@ import org.hibernate.query.Query;
 import org.joda.time.DateTime;
 
 import domain.Film;
+import domain.Order;
 import domain.Seat;
 import domain.Sessions;
 import domain.User;
@@ -197,16 +198,19 @@ public class DemoHibernate {
 //        seat.addSessions(sessions);
 //        sessions.addSeat(seat);
         
-        User user1 = new User();
-        user1.setUserName("Garry");
-        user1.setUserPassword("1234");
-        user1.setUserEmail("garry_gefferson1959@garry.com");
-        user1.setUserRole("user");
-        
+        Order order = new Order();
+        User user2 = session.get(User.class, (long)1);
+        order.setUser(user2);
+        Seat seatNum = session.get(Seat.class, 3);
+        order.setSeatNumber(seatNum);
+        Film film2 = session.get(Film.class, 1);
+        order.setFilm(film2);
+        Sessions sess1 = session.get(Sessions.class, 1);
+        order.setSessionOrder(sess1);
         
         
     //    session.saveOrUpdate(seat);
-        session.saveOrUpdate(user1);
+        session.saveOrUpdate(order);
 //      
       session.getTransaction().commit();
   //---------------------------    
