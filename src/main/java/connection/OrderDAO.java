@@ -7,7 +7,6 @@ import java.util.List;
 
 import domain.Film;
 import domain.Order;
-import domain.Sessions;
 
 /**
  * This interface represents DAO for the Order model.
