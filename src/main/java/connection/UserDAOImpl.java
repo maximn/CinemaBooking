@@ -27,13 +27,16 @@ public class UserDAOImpl extends AbstractDAO implements UserDAO {
         User user = new User();
         Session session = null;
         try {
-            session = getSessionFactory().openSession();
+          //  session = getSessionFactory().openSession();
+            session = getSession();
         user = (User) session.get(User.class, id);
         } catch (Exception e){
             e.printStackTrace();
         }finally {
             if((session != null) && (session.isOpen())) 
                 session.close();
+            //closeSession();
+           // closeSessionFactory();
         }
         return user;
     }
@@ -43,7 +46,8 @@ public class UserDAOImpl extends AbstractDAO implements UserDAO {
         Session session = null;
         User user = new User();
         try {
-            session = getSessionFactory().openSession();
+            //session = getSessionFactory().openSession();
+            session = getSession();
             user = (User) session.createQuery("FROM User E WHERE E.userEmail = :user_email")
                     .setString("user_email", email)
                     .uniqueResult();
@@ -51,7 +55,9 @@ public class UserDAOImpl extends AbstractDAO implements UserDAO {
         catch (Exception e) {
             e.printStackTrace();
         }finally{
-            if ((session != null)&&(session.isOpen())) session.close();
+            if ((session != null)&&(session.isOpen())) session.close(); 
+            //closeSession();
+            //closeSessionFactory();
         }
         return user;
     }
@@ -70,6 +76,7 @@ public class UserDAOImpl extends AbstractDAO implements UserDAO {
             e.printStackTrace();
         } finally{
             if ((session != null)&&(session.isOpen())) session.close();
+           // closeSessionFactory();
         }
         return listUser;
     }
@@ -87,6 +94,8 @@ public class UserDAOImpl extends AbstractDAO implements UserDAO {
         }finally{
             if ((session != null)&&(session.isOpen())) 
                 session.close();
+           // closeSession();
+           // closeSessionFactory();
         }
  }
 
@@ -103,6 +112,7 @@ public class UserDAOImpl extends AbstractDAO implements UserDAO {
         }finally{
             if ((session != null)&&(session.isOpen())) 
                 session.close();
+           // closeSessionFactory();
         }
         
     }
@@ -117,6 +127,10 @@ public class UserDAOImpl extends AbstractDAO implements UserDAO {
             session.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();
+        }finally{
+            if ((session != null)&&(session.isOpen())) 
+                session.close();
+           // closeSessionFactory();
         }
     }
 
@@ -126,7 +140,8 @@ public class UserDAOImpl extends AbstractDAO implements UserDAO {
         boolean result = false;
         Session session = null;
         try {
-            session = getSessionFactory().openSession();
+            //session = getSessionFactory().openSession();
+            session = getSession();
             user = (User) session.createQuery("FROM User E WHERE E.userEmail = :user_email")
                     .setString("user_email", email)
                     .uniqueResult();
@@ -135,6 +150,11 @@ public class UserDAOImpl extends AbstractDAO implements UserDAO {
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }finally{
+            if ((session != null)&&(session.isOpen())) 
+                session.close();
+           // closeSession();
+           // closeSessionFactory();
         }
         return result;
     }
@@ -152,24 +172,25 @@ public class UserDAOImpl extends AbstractDAO implements UserDAO {
         }finally{
             if ((session != null)&&(session.isOpen())) 
                 session.close();
+            closeSessionFactory();
         }
     }
     
     public static void main(String[] args) {
         UserDAOImpl userDAO = new UserDAOImpl();
-        long id = 2;
+//        long id = 2;
         User user = new User(null, "Mods232no", "1234324", "modsno@nomo2.com", "user");
-        //userDAO.createUser(user);
-        User user1 = userDAO.findEmail("modsno@nomo.com");
+        userDAO.createUser(user);
+        User user1 = userDAO.findEmail("garry_gefferson1959@garry.com");
         List<User> userList = userDAO.list();
         for(User c : userList){
             System.out.println(c.toString());
         }
-        User user2 = new User((long) 2, "Mods", "1234324", "mod@no.com", "user");
+       // User user2 = new User((long) 2, "Mods", "1234324", "mod@no.com", "user");
         //userDAO.updateUser(user2);
         //userDAO.deleteByEmail(user2);
         
-       System.out.println(userDAO.existEmail("modsno@nomo.com"));
+       System.out.println(userDAO.existEmail("garry_gefferson1959@garry.com"));
         
         
     }
