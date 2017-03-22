@@ -35,7 +35,7 @@ public class UserDAOImpl extends AbstractDAO implements UserDAO {
         }finally {
             if((session != null) && (session.isOpen())) 
                 session.close();
-            //closeSession();
+            closeSession();
            // closeSessionFactory();
         }
         return user;
@@ -56,7 +56,7 @@ public class UserDAOImpl extends AbstractDAO implements UserDAO {
             e.printStackTrace();
         }finally{
             if ((session != null)&&(session.isOpen())) session.close(); 
-            //closeSession();
+            closeSession();
             //closeSessionFactory();
         }
         return user;
