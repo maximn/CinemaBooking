@@ -55,8 +55,9 @@ public class UserDAOImpl extends AbstractDAO implements UserDAO {
         catch (Exception e) {
             e.printStackTrace();
         }finally{
-            if ((session != null)&&(session.isOpen())) session.close(); 
-            closeSession();
+            if ((session != null)&&(session.isOpen())) 
+                session.close(); 
+                closeSession();
             //closeSessionFactory();
         }
         return user;
@@ -69,13 +70,15 @@ public class UserDAOImpl extends AbstractDAO implements UserDAO {
         User user = new User();
         List<User> listUser = new ArrayList<User>();
         try {
-           session = getSessionFactory().openSession();
+           session = getSession();
            listUser = session.createCriteria(User.class).list();
         } 
         catch (Exception e) {
             e.printStackTrace();
         } finally{
-            if ((session != null)&&(session.isOpen())) session.close();
+            if ((session != null)&&(session.isOpen())) 
+                session.close();
+                closeSession();
            // closeSessionFactory();
         }
         return listUser;
@@ -85,16 +88,22 @@ public class UserDAOImpl extends AbstractDAO implements UserDAO {
     public void createUser(User user) throws RuntimeException {
         Session session = null;
         try {
-            session = getSessionFactory().openSession();
-            session.beginTransaction();
-            session.save(user);
-            session.getTransaction().commit();
+           // session = getSessionFactory().openSession();
+          session = getSession();
+//            session.beginTransaction();
+//            session.saveOrUpdate(user);
+//            session.getTransaction().commit();
+            
+            
+            beginSessionsTransaction();
+            saveOrUpdateSession(user);
+            commitSessionsTransaction();
         } catch (Exception e) {
             e.printStackTrace();
         }finally{
             if ((session != null)&&(session.isOpen())) 
                 session.close();
-           // closeSession();
+                closeSession();
            // closeSessionFactory();
         }
  }

@@ -26,6 +26,22 @@ public abstract class AbstractDAO {
         return session;
     }
     
+    public Session getOpenedSession(){
+        return session;
+    }
+    
+    public void beginSessionsTransaction(){
+        session.beginTransaction();
+    }
+    
+    public void saveOrUpdateSession(Object object){
+        session.saveOrUpdate(object);
+    }
+    
+    public void commitSessionsTransaction(){
+        session.getTransaction().commit();
+    }
+    
     public void closeSession(){
         session.close();
     }

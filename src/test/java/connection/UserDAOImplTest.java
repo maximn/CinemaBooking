@@ -31,12 +31,14 @@ import domain.User;
 
 public class UserDAOImplTest {
     
-    
     private UserDAOImpl userDAO = new UserDAOImpl();
-    
-     
     private User user = new User(null, "arar", "23471", "arar@com.com", "user");
     
+    
+//    @Before
+//    public void beforeTest(){
+//        userDAO.createUser(user);
+//    }
         
     @Test
     public void findId(){
@@ -46,7 +48,7 @@ public class UserDAOImplTest {
     
     @Test
     public void existEmailTest(){
-        assertTrue(userDAO.existEmail("arar@com.com"));
+       assertTrue(userDAO.existEmail("arar@com.com"));
     }
     
     @Test
