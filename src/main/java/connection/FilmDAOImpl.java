@@ -75,7 +75,7 @@ public class FilmDAOImpl extends AbstractDAO implements FilmDAO{
     }
 
     @Override
-    public void deleteById(Film filmCinema) throws RuntimeException {
+    public void deleteFilm(Film filmCinema) throws RuntimeException {
         Session session = null;
         try {
             session = getSessionFactory().openSession();

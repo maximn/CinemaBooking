@@ -28,7 +28,7 @@ public interface FilmDAO {
     
     /**
      * Returns a list with all Films in the database. The list is never null and is empty
-     * when database doesn't contain any Film with that film DateTime.
+     * when database doesn't contain any Film.
      * @return List with all Films in the database.
      * @throws RuntimeException if something fails at the database level.
      */
@@ -56,6 +56,6 @@ public interface FilmDAO {
      * @param FilmCinema domain.Film object with the parameters of the Film to be deleted in the database.
      * @throws RuntimeException if something fails at the database level.
      */
-    public void deleteById(Film filmCinema) throws RuntimeException;
+    public void deleteFilm(Film filmCinema) throws RuntimeException;
 
 }
