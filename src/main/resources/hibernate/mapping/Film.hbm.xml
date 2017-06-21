@@ -16,7 +16,7 @@
          table="sessions"  
          inverse="true"
          lazy="false"
-         cascade="save-update"> <!-- cascade="all""save-update" lazy="false"-->
+         cascade="all-delete-orphan"> <!-- cascade="all""save-update, delete-orphan" lazy="false"-->
       <key column="film_id"/>
       <one-to-many class="domain.Sessions"/>
     </set>

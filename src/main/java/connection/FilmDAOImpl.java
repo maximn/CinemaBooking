@@ -81,6 +81,7 @@ public class FilmDAOImpl extends AbstractDAO implements FilmDAO{
             session = getSessionFactory().openSession();
             session.getTransaction();
             session.delete(filmCinema);
+            //session.remove(filmCinema);
             session.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();

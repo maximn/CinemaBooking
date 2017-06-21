@@ -68,9 +68,7 @@ public class Film {
         if (!(s instanceof Film))
             return false;
         Film other = (Film) s;
-        return (Objects.equals(filmId, other.filmId)) && (Objects.equals(filmName, other.filmName)) && (Objects.equals(filmYear, other.filmYear)) 
-                && (Objects.equals(filmLength, other.filmLength)) && (Objects.equals(filmDescription, other.filmDescription))
-                && (Objects.equals(sessionsSet, other.sessionsSet));
+        return (Objects.equals(filmName, other.filmName));
         
     }
 
