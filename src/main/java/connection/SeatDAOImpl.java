@@ -75,7 +75,7 @@ public class SeatDAOImpl extends AbstractDAO implements SeatDAO {
     }
 
     @Override
-    public void deleteSession(Seat seatInConcreteHall) throws RuntimeException {
+    public void deleteSeat(Seat seatInConcreteHall) throws RuntimeException {
         Session session = null;
         try {
             session = getSessionFactory().openSession();

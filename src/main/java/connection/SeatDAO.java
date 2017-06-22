@@ -55,7 +55,7 @@ public interface SeatDAO {
      * @param seatInConcreteHall of the type Seat is the concrete seat of the concrete hall of the concrete Film and Session.
      * @throws RuntimeException if something fails at the database level.
      */
-    public void deleteSession(Seat seatInConcreteHall) throws RuntimeException;
+    public void deleteSeat(Seat seatInConcreteHall) throws RuntimeException;
     
     
 }
