@@ -13,9 +13,12 @@ case class User(@BeanProperty var userId: Long, @BeanProperty var userName: Stri
 }
 
 object User {
-  def apply(userId: Long, userName: String, userPassword: String, userEmail: String, userRole: String): User =
+  def apply(userId: Long,
+            userName: String,
+            userPassword: String,
+            userEmail: String,
+            userRole: String): User =
     new User(userId, userName,  hashPassword(userPassword), userEmail, userRole)
-
 
   private def hashPassword(userPassword: String): String = {
     try {
@@ -31,5 +34,4 @@ object User {
         throw e
     }
   }
-
 }
