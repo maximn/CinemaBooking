@@ -30,3 +30,8 @@ local.properties
 # Locally stored "Eclipse launch configurations"
 *.launch
 /doc/
+
+.idea
+target
+*.iml
+.*
