@@ -1,7 +1,8 @@
 package connection
 
-import domain.User
 import java.util
+
+import domain.User
 
 trait UserDAO {
   def findId(id: Long): User
