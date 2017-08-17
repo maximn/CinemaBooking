@@ -30,14 +30,5 @@
  
      
       <mapping resource="hibernate/mapping/User.hbm.xml"/>
-<!--      <mapping class="domain.User" /> -->
-     <mapping resource="hibernate/mapping/Sessions.hbm.xml"/>
-<!--      <mapping class="domain.Sessions" /> -->
-     <mapping resource="hibernate/mapping/Film.hbm.xml"/>
-<!--      <mapping class="domain.Film" /> -->
-     <mapping resource="hibernate/mapping/Seat.hbm.xml"/>
-     <mapping resource="hibernate/mapping/Order.hbm.xml"/>
-
- 
 </session-factory>
 </hibernate-configuration>

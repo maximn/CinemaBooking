@@ -13,11 +13,7 @@ import java.sql.SQLException;
  */
 public abstract class AbstractDAOFactory {
     public abstract UserDAO getUserDAO();
-    public abstract SessionsDAO getSessionDAO();
-    public abstract FilmDAO getFilmDAO();
-    public abstract SeatDAO getSeatDAO();
-    public abstract OrderDAO getOrderDAO();
-    
+
     /**
      * Returns a connection to the database.
      * @return A connection to the database.

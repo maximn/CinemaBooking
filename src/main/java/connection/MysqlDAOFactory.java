@@ -71,31 +71,4 @@ public class MysqlDAOFactory extends AbstractDAOFactory {
     public UserDAO getUserDAO() {
         return new UserDAOImpl();
     }
-
-    @Override
-    public SessionsDAO getSessionDAO() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public FilmDAO getFilmDAO() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public SeatDAO getSeatDAO() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public OrderDAO getOrderDAO() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    
-
 }

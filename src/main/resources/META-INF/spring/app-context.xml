@@ -13,11 +13,7 @@
 <!-- 		DomainClasses -->
 
     <bean id="user" name="userBean" class="domain.User"></bean>
-	<bean id="order" name="orderBean" class="domain.Order"></bean>
-    <bean id="sessions" name="sessionsBean" class="domain.Sessions"></bean>
-    <bean id="seat" name="seatBean" class="domain.Seat"></bean>
-    <bean id="film" name="filmBean" class="domain.Film"></bean>
-    
+
 <!--     DataSource -->
     
     <bean
@@ -63,10 +59,6 @@
 
      <property name="mappingResources">
 	<list>
-           <value>/hibernate/mapping/Film.hbm.xml</value>
-           <value>/hibernate/mapping/Order.hbm.xml</value>
-           <value>/hibernate/mapping/Seat.hbm.xml</value>
-           <value>/hibernate/mapping/Sessions.hbm.xml</value>
            <value>/hibernate/mapping/User.hbm.xml</value>
 	</list>
       </property>
