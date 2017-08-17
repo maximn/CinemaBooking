@@ -4,20 +4,14 @@
 package connection;
 
 
-
-import static org.junit.Assert.*;
+import domain.User;
+import org.junit.Test;
 
 import java.util.List;
 
-import javax.validation.constraints.AssertTrue;
-
-import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
-
-import domain.User;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Represents unit tests for UserDAOImpl.java.
@@ -32,7 +26,7 @@ import domain.User;
 public class UserDAOImplTest {
     
     private UserDAOImpl userDAO = new UserDAOImpl();
-    private User user = new User(null, "arar", "23471", "arar@com.com", "user");
+    private User user = new User(0, "arar", "23471", "arar@com.com", "user");
     
     
 //    @Before
@@ -53,7 +47,7 @@ public class UserDAOImplTest {
     
     @Test
     public void createUserTest(){
-        User user1 = new User(null, "Nick", "32344", "nick@nick.com", "user");
+        User user1 = new User(0, "Nick", "32344", "nick@nick.com", "user");
         userDAO.createUser(user1);
         System.out.println("The first" + userDAO.findId(1).toString());
         assertTrue(userDAO.existEmail("nick@nick.com"));
@@ -63,9 +57,9 @@ public class UserDAOImplTest {
     @Test
     public void changePasswordTest(){
         User user2 = new User((long)1, "arar", "23a471", "arar@com.com", "user");
-        String pass = userDAO.findEmail("arar@com.com").getUserPassword();
+        String pass = userDAO.findEmail("arar@com.com").userPassword();
         userDAO.changePassword(user2);
-        assertNotEquals(pass, userDAO.findEmail("arar@com.com").getUserPassword());
+        assertNotEquals(pass, userDAO.findEmail("arar@com.com").userPassword());
     }
     
     @Test 
@@ -91,7 +85,7 @@ public class UserDAOImplTest {
     
     @Test
     public void deleteByEmailTest(){
-        User user = new User(null,"arar", "23471", "arar@com.com", "user");
+        User user = new User(0,"arar", "23471", "arar@com.com", "user");
         userDAO.createUser(user);
         userDAO.deleteByEmail(user);
         assertEquals(userDAO.findEmail("arar@com.com")==null, true);

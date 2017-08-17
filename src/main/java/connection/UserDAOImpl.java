@@ -1,18 +1,10 @@
 package connection;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import domain.User;
+import org.hibernate.Session;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
-
-import domain.User;
 
 /**
  * UserDAOImpl represents DAO for the domain class User. 
@@ -188,7 +180,7 @@ public class UserDAOImpl extends AbstractDAO implements UserDAO {
     public static void main(String[] args) {
         UserDAOImpl userDAO = new UserDAOImpl();
 //        long id = 2;
-        User user = new User(null, "Mods232no", "1234324", "modsno@nomo2.com", "user");
+        User user = new User(0, "Mods232no", "1234324", "modsno@nomo2.com", "user");
         userDAO.createUser(user);
         User user1 = userDAO.findEmail("garry_gefferson1959@garry.com");
         List<User> userList = userDAO.list();

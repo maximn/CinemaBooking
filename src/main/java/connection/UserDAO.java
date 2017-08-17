@@ -3,10 +3,9 @@
  */
 package connection;
 
-import java.sql.Connection;
-import java.util.List;
-
 import domain.User;
+
+import java.util.List;
 
 /**
  * This interface represents a contract for a DAO for the User model.
